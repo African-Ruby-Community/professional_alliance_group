@@ -1,1 +1,1 @@
-Sitemap: /professional_alliance_group/sitemap.xml
+Sitemap: /sitemap.xml
