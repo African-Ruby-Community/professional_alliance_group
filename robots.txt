@@ -1,1 +1,1 @@
-Sitemap: https://rubyconf.africa/sitemap.xml
+Sitemap: /professional_alliance_group/sitemap.xml
