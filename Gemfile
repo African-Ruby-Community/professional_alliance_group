@@ -12,4 +12,6 @@ gem 'csv'
 
 gem "dotenv", "~> 3.1"
 
-gem 'google-api-client', '~> 0.17'
+gem 'googleauth', '~> 1.14'
+gem 'google-api-client', '~> 0.53.0'
+gem 'google-apis-sheets_v4', '~> 0.41'

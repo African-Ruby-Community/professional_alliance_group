@@ -8,13 +8,9 @@ bio: |
     top-tier conferences and journals.
 
 image: https://placehold.co/800@3x.png
-social:
-  - name: twitter
-    url: https://twitter.com/alicesmith
-  - name: linkedin
-    url: https://linkedin.com/in/alicesmith
-  - name: github
-    url: https://github.com/alicesmith
+twitter: https://twitter.com/alicesmith
+linkedin: https://linkedin.com/in/alicesmith
+github: https://github.com/alicesmith
 groups:
   - /groups/ai-research-collective
 tags:
