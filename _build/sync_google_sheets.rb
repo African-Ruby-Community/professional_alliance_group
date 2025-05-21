@@ -136,10 +136,14 @@ def sanitize_filename(filename)
 end
 
 # --- Helper function to optimize images ---
-def optimize_image(input_path, output_path = nil)
+def optimize_image(input_path, output_dir, output_filename = nil)
   begin
+    # Ensure output directory exists
+    FileUtils.mkdir_p(output_dir) unless File.directory?(output_dir)
+
     # If no output path is provided, use the input path
-    output_path ||= input_path
+    output_filename ||= File.basename(input_path)
+    output_path ||= File.join(output_dir, output_filename)
 
     # Load the image
     image = MiniMagick::Image.open(input_path)
@@ -344,17 +348,16 @@ sheets_config.each do |filename_key, config_data|
 
           # Optimize the image
           optimized_filename = "#{File.basename(local_image_name, '.*')}_optimized#{File.extname(local_image_name)}"
-          optimized_path = File.join(OPTIMIZED_IMAGE_DIR, optimized_filename)
-
-          # Optimize the image and get the path to the optimized image
-          optimize_image(local_file_system_path, optimized_path)
+          # Create a subdirectory for optimized images for the sheet
+          optimized_image_dir = File.join(OPTIMIZED_IMAGE_DIR, image_subdirectory)
+          optimized_path = optimize_image(local_file_system_path, optimized_image_dir, optimized_filename)
 
           # Construct the root-relative path Jekyll will use in the final site
           # Use the optimized image path if it exists, otherwise use the original
           if File.exist?(optimized_path)
-            jekyll_relative_image_path = "/#{OPTIMIZED_IMAGE_DIR}/#{optimized_filename}"
+            jekyll_relative_image_path = "/#{File.join(OPTIMIZED_IMAGE_DIR, image_subdirectory, optimized_filename)}"
           else
-            jekyll_relative_image_path = File.join(JEKYLL_ROOT_IMAGE_BASE, image_subdirectory, local_image_name)
+            jekyll_relative_image_path = "/#{File.join(JEKYLL_ROOT_IMAGE_BASE, image_subdirectory, local_image_name)}"
           end
 
           record[current_image_column_name.downcase] = jekyll_relative_image_path # Overwrite with local path
