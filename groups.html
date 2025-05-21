@@ -18,7 +18,7 @@ image: "/images/logo/arc_logo_coloured_groups.png" # Consider a different image 
             <span class="display-4 font-weight-bold" style="color: #007bff;">Collaboration Groups</span>
         </div>
         <div class="row top-pd-mobile">
-            {% for group in site.groups %}
+            {% for group in site.data.new_remote.groups %}
             {% include group_block.liquid group=group %}
             {% endfor %}
         </div>

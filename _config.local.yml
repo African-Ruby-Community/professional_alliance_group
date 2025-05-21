@@ -16,42 +16,17 @@
 # These are used to personalize your new site. If you look in the HTML files,
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
 # The title of your site
-title: Professional Alliance
+title: Admanus Group
 
 # The email address for site-related communication
-email: organisers@rubyconf.africa
+email: admin@admanus.com
 
 # A brief description of your site
 description: >- # this means to ignore newlines until "baseurl:"
-  <b>RubyConf Africa 2024</b> is the first conference of its
-                      kind organized by ARC that aims to connect together
-                      Developers (Engineers), Designers and Entrepreneurs, from
-                      across Africa to a <b>two day</b> conference from
-                      <b>26th to 27th July, 2024 in Nairobi, Kenya</b> to have
-                      conversations around the theme
-                      <b>“Agile, Open Source & Entrepreneurship”</b>. The
-                      objective of the conference is to:
+  Bridging individual skills and knowledge to create a dynamic and effective collaborative network.
 
 # The subpath of your site, e.g. /blog
 baseurl: ""
@@ -90,7 +65,7 @@ assets:
   js_compressor: uglifier
   css_compressor: sass
   sources:
-    - _assets/javascrips
+    - _assets/javascripts
     - _assets/stylesheets
 
 # Collections of content
@@ -101,6 +76,9 @@ collections:
   groups:
     output: true
     permalink: /groups/:name/
+  projects:
+    output: true
+    permalink: /projects/:name
 
 
 # Minifier settings
@@ -108,9 +86,16 @@ minifier:
   css:
     compress: true
     preserve_comments: false
+    preserve_hacks: true
+    remove_inlined_files: true
   js:
     compress: true
     mangle: true
+    output_opts:
+      max_line_len: 32000
+      beautify: false
+    mangle_opts:
+      toplevel: true
   html:
     remove_comments: true
     remove_empty_lines: true
@@ -118,6 +103,14 @@ minifier:
     remove_optional_tags: true
     collapse_whitespace: true
     conservative_collapse: true
+    minify_js: true
+    minify_css: true
+    remove_quotes: true
+    remove_http_protocol: true
+    remove_https_protocol: true
+    remove_script_attributes: true
+    remove_style_attributes: true
+    simple_doctype: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
