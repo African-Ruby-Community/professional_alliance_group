@@ -72,11 +72,33 @@ If you need to update the project, you can follow these instructions:
 
 ## Deployment
 
-To build the site for deployment, you can run:
+To build the site for deployment with optimizations, you can run:
 
 ```bash
-bundle exec jekyll build -d public
+make build
 ```
+
+This will:
+1. Build the site with Jekyll in production mode
+2. Run PurgeCSS to remove unused CSS
+3. Apply minification to HTML, CSS, and JavaScript files
+
+### Minification
+
+The site uses the `jekyll-minifier` plugin to minify HTML, CSS, and JavaScript files. The minification settings are configured in `_config.yml` and `_config.local.yml`. 
+
+To test if the minification is working correctly, you can run:
+
+```bash
+make test-minification
+```
+
+This will:
+1. Build the site if it hasn't been built yet
+2. Check all HTML, CSS, and JavaScript files in the `public` directory
+3. Report their sizes and minification status
+
+The test will help you identify any files that aren't being properly minified and provide suggestions for further optimization.
 
 ## Google Sheets Integration
 

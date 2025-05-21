@@ -86,9 +86,16 @@ minifier:
   css:
     compress: true
     preserve_comments: false
+    preserve_hacks: true
+    remove_inlined_files: true
   js:
     compress: true
     mangle: true
+    output_opts:
+      max_line_len: 32000
+      beautify: false
+    mangle_opts:
+      toplevel: true
   html:
     remove_comments: true
     remove_empty_lines: true
@@ -96,6 +103,14 @@ minifier:
     remove_optional_tags: true
     collapse_whitespace: true
     conservative_collapse: true
+    minify_js: true
+    minify_css: true
+    remove_quotes: true
+    remove_http_protocol: true
+    remove_https_protocol: true
+    remove_script_attributes: true
+    remove_style_attributes: true
+    simple_doctype: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.

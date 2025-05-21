@@ -1,6 +1,6 @@
 # Makefile for Jekyll Setup and Commands
 
-.PHONY: install serve build clean sync generate generate-members generate-groups generate-projects sync-and-generate setup-project
+.PHONY: install serve build clean sync generate generate-members generate-groups generate-projects sync-and-generate setup-project test-minification
 
 CONFIGS = _config.yml,_config.local.yml
 
@@ -48,9 +48,18 @@ serve:
 # Complete development workflow: sync data, generate files, and serve
 dev: sync-and-generate serve
 
-# Build the site for deployment
+# Build the site for deployment with optimizations
 build:
-	bundle exec jekyll build -d public
+	JEKYLL_ENV=production bundle exec jekyll build -d public
+	@echo "Running PurgeCSS to remove unused CSS..."
+	@if command -v purgecss >/dev/null 2>&1; then \
+		purgecss -c purgecss.config.js; \
+	else \
+		echo "PurgeCSS not found. Installing..."; \
+		npm install -g purgecss; \
+		purgecss -c purgecss.config.js; \
+	fi
+	@echo "✅ Site built and optimized in the 'public' directory"
 
 # Clean the vendor directory and generated files
 clean:
@@ -74,3 +83,12 @@ setup-project:
 	@echo "4. Generating member and group files..."
 	@$(MAKE) generate
 	@echo "✅ Project setup complete! Run 'make serve' to start the development server."
+
+# Test minification of the built site
+test-minification:
+	@if [ ! -d "public" ]; then \
+		echo "❌ The 'public' directory does not exist. Running build first..."; \
+		$(MAKE) build; \
+	fi
+	@echo "Testing minification of HTML, CSS, and JavaScript files..."
+	@ruby _build/test_minification.rb
