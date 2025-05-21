@@ -24,9 +24,10 @@
 	<!-- CSS Style -->
 	<link href="/professional_alliance_group/assets/css/bootstrap.css" rel="stylesheet" />
 	<link href="/professional_alliance_group/assets/css/bootstrapV5.css" rel="stylesheet" />
-	<link href="/professional_alliance_group/assets/css/style.css" rel="stylesheet" />
-	<link href="/professional_alliance_group/assets/css/responsive.css" rel="stylesheet" />
-	<link href="/professional_alliance_group/assets/css/color-switcher-design.css" rel="stylesheet" />
+ <link href="/professional_alliance_group/assets/css/style.css" rel="stylesheet" />
+ <link href="/professional_alliance_group/assets/css/responsive.css" rel="stylesheet" />
+ <link href="/professional_alliance_group/assets/css/color-switcher-design.css" rel="stylesheet" />
+ <link href="/professional_alliance_group/assets/css/dark-mode.css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -85,11 +86,14 @@
                 <div class="logo">
                     <a href="/"
                     ><img
+                                class="theme-sensitive-logo"
                                 src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                                data-light-src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                                data-dark-src="/professional_alliance_group/images/logo/aglogo.png"
                                 alt="Admanus Group"
                                 title=""
-                                width="300"
-                                height="150"
+                                width=""
+                                height=""
                                 loading="lazy"
                         /></a>
                 </div>
@@ -154,8 +158,12 @@
         <nav class="menu-box">
             <div class="nav-logo">
                 <a href="index.html"
-                ><img src="/professional_alliance_group/images/logo/arc_logo_coloured.png" alt="Africa Ruby
-            Community Logo - Building a vibrant Ruby community in Africa"
+                ><img 
+                      class="theme-sensitive-logo"
+                      src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                      data-light-src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                      data-dark-src="/professional_alliance_group/images/logo/aglogo.png"
+                      alt="Admanus Group Logo"
                       title=""></a
                 >
             </div>
@@ -168,6 +176,7 @@
     <!-- End Mobile Menu -->
 </header>
 
+
     <!-- Content -->
     <div class="content-wrapper">
         <div class="preloader-new">
@@ -176,10 +185,10 @@
     <div class="loader-new"></div>
 </div>
 
-<section class="speakers-section-two" style="margin-top: 0">
+<section class="speakers-section-two section-no-margin-top">
     <div class="auto-container">
         <div class="sec-title text-center my-4">
-            <span class="display-4 font-weight-bold" style="color: #007bff;">Collaboration Groups</span>
+            <span class="display-4 font-weight-bold title-color">Collaboration Groups</span>
         </div>
         <div class="row top-pd-mobile">
             
@@ -187,16 +196,16 @@
     <div class="inner-box">
         <div class="info-box">
             <h4 class="name">
-                <a href="/groups/ai-research-collective/">AI Research Collective</a>
+                <a href="/groups/group1">Open Dev</a>
             </h4>
-            <span class="short-description">A multidisciplinary group exploring the frontiers of Artificial Intelligence.</span>
+            <span class="short-description">Nemo enim ipsam voluptatem</span>
         </div>
         <div class="image-box">
             <figure class="image">
-                <a href="/groups/ai-research-collective/">
+                <a href="/groups/group1">
                     
-                        <img src="/images/groups/ai_collective.png" alt="AI Research Collective"
-                             style="width: 200px; height: 145px; object-fit: cover;"/>
+                        <img src="/images/compressed/remote_groups/groupsgroup1_optimized.jpg" alt="Open Dev"
+                             class="group-image"/>
                     
                 </a>
             </figure>
@@ -204,36 +213,37 @@
         <div class="social-box">
             <ul class="social-links social-icon-colored">
                 
-                
-                
                     <li>
-                        <a href="https://airesearchcollective.org"><i class="fas fa-globe"></i></a>
+                        <a href="https://x.com/Google"><i class="fa-brands fa-x-twitter"></i></a>
                     </li>
                 
                 
                     <li>
-                        <a href="mailto:contact@airesearchcollective.org"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
                     </li>
+                
+                
                 
             </ul>
         </div>
     </div>
 </div>
+
             
             <div class="speaker-block-two col-xl-3 col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
     <div class="inner-box">
         <div class="info-box">
             <h4 class="name">
-                <a href="/groups/open-dev">Open Dev Team</a>
+                <a href="/groups/group2">Closed Dev</a>
             </h4>
-            <span class="short-description"></span>
+            <span class="short-description">Nemo enim ipsam voluptatem</span>
         </div>
         <div class="image-box">
             <figure class="image">
-                <a href="/groups/open-dev">
+                <a href="/groups/group2">
                     
-                        <img src="/images/compressed/community.jpg" alt="Open Dev Team"
-                             style="width: 200px; height: 145px; object-fit: cover;"/>
+                        <img src="/images/compressed/remote_groups/groupsgroup2_optimized.jpg" alt="Closed Dev"
+                             class="group-image"/>
                     
                 </a>
             </figure>
@@ -242,65 +252,26 @@
             <ul class="social-links social-icon-colored">
                 
                     <li>
-                        <a href="https://twitter.com/opendevteam"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://x.com/Google"><i class="fa-brands fa-x-twitter"></i></a>
                     </li>
-                
                 
                 
                     <li>
-                        <a href="https://github.com/opendevteam"><i class="fas fa-globe"></i></a>
+                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
                     </li>
+                
                 
                 
             </ul>
         </div>
     </div>
 </div>
-            
-            <div class="speaker-block-two col-xl-3 col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
-    <div class="inner-box">
-        <div class="info-box">
-            <h4 class="name">
-                <a href="/groups/template">[Group Name]</a>
-            </h4>
-            <span class="short-description"></span>
-        </div>
-        <div class="image-box">
-            <figure class="image">
-                <a href="/groups/template">
-                    
-                        <img src="/images/compressed/community.jpg" alt="[Group Name]"
-                             style="width: 200px; height: 145px; object-fit: cover;"/>
-                    
-                </a>
-            </figure>
-        </div>
-        <div class="social-box">
-            <ul class="social-links social-icon-colored">
-                
-                    <li>
-                        <a href="https://twitter.com/examplegroup"><i class="fa-brands fa-x-twitter"></i></a>
-                    </li>
-                
-                
-                    <li>
-                        <a href="https://linkedin.com/company/examplegroup"><i class="fab fa-linkedin"></i></a>
-                    </li>
-                
-                
-                    <li>
-                        <a href="https://example.com/group"><i class="fas fa-globe"></i></a>
-                    </li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
+
             
         </div>
     </div>
 </section>
+
     </div>
 
     <!-- Footer -->
@@ -321,8 +292,10 @@
                                 <div class="logo">
                                     <a href="/professional_alliance_group/index.html"
                                     ><img
-                                                src="/professional_alliance_group/images/logo/aglogo.png"
-                                                class="lazyload"
+                                                class="theme-sensitive-logo lazyload"
+                                                src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                                                data-light-src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                                                data-dark-src="/professional_alliance_group/images/logo/aglogo.png"
                                                 alt="Admanus Group"
                                                 width="200"
                                                 height="50"
@@ -354,7 +327,7 @@
                                     </li>
                                     <li>
                                         <a
-                                                href="[LinkedIn link]""
+                                                href="[LinkedIn link]"
                                                 aria-label="Visit our LinkedIn page"
                                         ><i class="fab fa-linkedin"></i></a>
                                     </li>
@@ -446,6 +419,13 @@
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-double-up"></span></div>
+
+<!-- Theme Toggle -->
+<!-- Theme Toggle Button -->
+<div class="theme-toggle" aria-label="Toggle dark/light mode">
+  <i class="fas fa-moon"></i>
+</div>
+
 <script src="/professional_alliance_group/assets/js/jquery.js"></script>
 <script src="/professional_alliance_group/assets/js/popper.min.js"></script>
 <script src="/professional_alliance_group/assets/js/bootstrap.min.js"></script>
@@ -456,6 +436,7 @@
 <script src="/professional_alliance_group/assets/js/script.js"></script>
 <!-- Color Setting -->
 <script src="/professional_alliance_group/assets/js/color-settings.js"></script>
+<script src="/professional_alliance_group/assets/js/theme-toggle.js"></script>
 <script src="/professional_alliance_group/assets/js/lazysizes.min.js" async></script>
 
 

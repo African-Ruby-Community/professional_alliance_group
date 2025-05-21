@@ -24,9 +24,10 @@
 	<!-- CSS Style -->
 	<link href="/professional_alliance_group/assets/css/bootstrap.css" rel="stylesheet" />
 	<link href="/professional_alliance_group/assets/css/bootstrapV5.css" rel="stylesheet" />
-	<link href="/professional_alliance_group/assets/css/style.css" rel="stylesheet" />
-	<link href="/professional_alliance_group/assets/css/responsive.css" rel="stylesheet" />
-	<link href="/professional_alliance_group/assets/css/color-switcher-design.css" rel="stylesheet" />
+ <link href="/professional_alliance_group/assets/css/style.css" rel="stylesheet" />
+ <link href="/professional_alliance_group/assets/css/responsive.css" rel="stylesheet" />
+ <link href="/professional_alliance_group/assets/css/color-switcher-design.css" rel="stylesheet" />
+ <link href="/professional_alliance_group/assets/css/dark-mode.css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -85,11 +86,14 @@
                 <div class="logo">
                     <a href="/"
                     ><img
+                                class="theme-sensitive-logo"
                                 src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                                data-light-src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                                data-dark-src="/professional_alliance_group/images/logo/aglogo.png"
                                 alt="Admanus Group"
                                 title=""
-                                width="300"
-                                height="150"
+                                width=""
+                                height=""
                                 loading="lazy"
                         /></a>
                 </div>
@@ -154,8 +158,12 @@
         <nav class="menu-box">
             <div class="nav-logo">
                 <a href="index.html"
-                ><img src="/professional_alliance_group/images/logo/arc_logo_coloured.png" alt="Africa Ruby
-            Community Logo - Building a vibrant Ruby community in Africa"
+                ><img 
+                      class="theme-sensitive-logo"
+                      src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                      data-light-src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                      data-dark-src="/professional_alliance_group/images/logo/aglogo.png"
+                      alt="Admanus Group Logo"
                       title=""></a
                 >
             </div>
@@ -168,6 +176,7 @@
     <!-- End Mobile Menu -->
 </header>
 
+
     <!-- Content -->
     <div class="content-wrapper">
         <!-- Speaker Detail -->
@@ -177,18 +186,18 @@
       <div class="image-column col-lg-4 col-md-12 col-sm-12">
         <div class="image-box">
           <figure class="image">
-            <img src="/images/members/banta.jpg" alt="page.name " />
+            <img src="/images/compressed/remote_members/membersbanta_optimized.jpg" alt="page.name " />
           </figure>
           <ul class="social-icon-two social-icon-colored text-center">
             
             <li>
-              <a href="http://twitter.com/bantab" target="_blank"
+              <a href="https://x.com/mraaroncruz" target="_blank"
                 ><i class="fa-brands fa-x-twitter"></i
               ></a>
             </li>
               
             <li>
-              <a href="https://github.com/banta" target="_blank"
+              <a href="https://github.com/" target="_blank"
                 ><i class="fab fa-sistrix"></i
               ></a>
             </li>
@@ -200,29 +209,44 @@
       <div class="info-column col-lg-8 col-md-12 col-sm-12">
         <div class="card shadow-sm">
           <div class="card-body">
-            <h3 class="card-title text-info-emphasis">Bernard Banta</h3>
+            <h3 class="card-title text-info-emphasis">Banta</h3>
             <h5 class="text-secondary font-weight-bold">Nemo enim ipsam voluptatem</h5>
-            <p class="card-text text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <h4 class="mt-4 text-info-emphasis">Talks by Bernard Banta</h4>
+            <p class="card-text text-black">Aaron lives in Vienna, Austria where he builds MVPs...</p>
+            <h4 class="mt-4 text-info-emphasis">Banta's Collaboration Groups</h4>
             <div class="row">
               
-              <div class="col-lg-6 col-md-6 mb-3">
-                <div class="border p-3 bg-white rounded shadow-sm">
-                  <h5 class="text-danger-emphasis font-weight-bold">
-                    Day 1
-                  </h5>
-                  <span class="text-muted"></span>
-                  <span class="d-block">TBA</span>
-                  <p class="mt-2 font-weight-bold text-info-emphasis">
-                    Roundtable: Entrepreneurship
-                  </p>
+                
                   
-                  <div class="text-info-emphasis">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  
+                  <div class="col-lg-6 col-md-6 mb-3">
+                    <div class="border p-3 bg-white rounded shadow-sm">
+                      <h5 class="text-danger-emphasis font-weight-bold">
+                        <a href="/groups/group2" class="text-dark">Closed Dev</a>
+                      </h5>
+                      <p class="text-muted">Nemo enim ipsam voluptatem</p>
+                    </div>
                   </div>
-                   
-                </div>
-              </div>
+                  
+                
+              
+            </div>
+
+            <h4 class="mt-4 text-info-emphasis">Banta's Projects</h4>
+            <div class="row">
+              
+                
+                  
+                  
+                  <div class="col-lg-6 col-md-6 mb-3">
+                    <div class="border p-3 bg-white rounded shadow-sm">
+                      <h5 class="text-info-emphasis font-weight-bold">
+                        <a href="/projects/project4" class="text-dark">Project 4</a>
+                      </h5>
+                      <p class="text-muted">Nemo enim ipsam voluptatem</p>
+                    </div>
+                  </div>
+                  
+                
               
             </div>
           </div>
@@ -253,8 +277,10 @@
                                 <div class="logo">
                                     <a href="/professional_alliance_group/index.html"
                                     ><img
-                                                src="/professional_alliance_group/images/logo/aglogo.png"
-                                                class="lazyload"
+                                                class="theme-sensitive-logo lazyload"
+                                                src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                                                data-light-src="/professional_alliance_group/images/logo/ag_logo_coloured.png"
+                                                data-dark-src="/professional_alliance_group/images/logo/aglogo.png"
                                                 alt="Admanus Group"
                                                 width="200"
                                                 height="50"
@@ -286,7 +312,7 @@
                                     </li>
                                     <li>
                                         <a
-                                                href="[LinkedIn link]""
+                                                href="[LinkedIn link]"
                                                 aria-label="Visit our LinkedIn page"
                                         ><i class="fab fa-linkedin"></i></a>
                                     </li>
@@ -378,6 +404,13 @@
 
 <!--Scroll to top-->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-double-up"></span></div>
+
+<!-- Theme Toggle -->
+<!-- Theme Toggle Button -->
+<div class="theme-toggle" aria-label="Toggle dark/light mode">
+  <i class="fas fa-moon"></i>
+</div>
+
 <script src="/professional_alliance_group/assets/js/jquery.js"></script>
 <script src="/professional_alliance_group/assets/js/popper.min.js"></script>
 <script src="/professional_alliance_group/assets/js/bootstrap.min.js"></script>
@@ -388,6 +421,7 @@
 <script src="/professional_alliance_group/assets/js/script.js"></script>
 <!-- Color Setting -->
 <script src="/professional_alliance_group/assets/js/color-settings.js"></script>
+<script src="/professional_alliance_group/assets/js/theme-toggle.js"></script>
 <script src="/professional_alliance_group/assets/js/lazysizes.min.js" async></script>
 
 

@@ -1,6 +1,1 @@
-module.exports = {
-  content: ["_site/**/*.html", "_site/**/*.js"],
-  css: ["_site/assets/css/*.css"],
-  output: "_site/assets/css/",
-  skippedContentGlobs: ["_site/assets/**/*.html"],
-};
+module.exports={content:["public/**/*.html","public/**/*.js"],css:["public/assets/css/*.css"],output:"public/assets/css/",skippedContentGlobs:["public/assets/**/*.html"]};
