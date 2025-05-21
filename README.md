@@ -55,3 +55,11 @@ To build the site for deployment, you can run:
 ```bash
 bundle exec jekyll build -d public
 ```
+
+## Testing google sheet integration
+
+```rb
+ruby _build/sync_google_sheets.rb
+```
+
+TODO: Hook up the data with the layouts
