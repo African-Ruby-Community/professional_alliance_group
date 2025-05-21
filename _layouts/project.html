@@ -1,5 +1,5 @@
 ---
-layout: application_group
+layout: application_project
 ---
 
 <section class="speaker-detail">
@@ -11,7 +11,7 @@ layout: application_group
                         {% if page.image %}
                         <img src="{{ page.image }}" alt="{{ page.name }}" />
                         {% else %}
-                        <img src="/images/groups/default.png" alt="{{ page.name }}" />
+                        <img src="/images/projects/default.png" alt="{{ page.name }}" />
                         {% endif %}
                     </figure>
                     <ul class="social-icon-two social-icon-colored text-center">
@@ -33,12 +33,6 @@ layout: application_group
                             ><i class="fas fa-globe"></i
                             ></a>
                         </li>
-                        {% endif %} {% if page.email and page.email != "" %}
-                        <li>
-                            <a href="mailto:{{ page.email }}"
-                            ><i class="fas fa-envelope"></i
-                            ></a>
-                        </li>
                         {% endif %}
                     </ul>
                 </div>
@@ -48,13 +42,13 @@ layout: application_group
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h3 class="card-title text-info-emphasis">{{ page.name }}</h3>
-                        <h5 class="text-secondary font-weight-bold">{{ page.short_description }}</h5>
-                        <p class="card-text text-black">{{ page.long_description }}</p>
+                        <h5 class="text-secondary font-weight-bold">{{ page.bio }}</h5>
+                        <p class="card-text text-black">{{ page.details }}</p>
 
-                        {% if page.members and page.members.size > 0 %}
-                        <h4 class="mt-4 text-info-emphasis">Members of {{ page.name }}</h4>
+                        {% if page.contributors and page.contributors.size > 0 %}
+                        <h4 class="mt-4 text-info-emphasis">Contributors to {{ page.name }}</h4>
                         <div class="row">
-                            {% for member_permalink in page.members %} {% assign member =
+                            {% for member_permalink in page.contributors %} {% assign member =
                             site.data.new_remote.members | where: "permalink", member_permalink | first %} {%
                             if member %}
                             <div class="col-lg-6 col-md-6 mb-3">
@@ -80,20 +74,18 @@ layout: application_group
                         </div>
                         {% endif %}
 
-                        {% if page.projects and page.projects.size > 0 %}
-                        <h4 class="mt-4 text-info-emphasis">Projects by {{ page.name }}</h4>
+                        {% if page.groups and page.groups.size > 0 %}
+                        <h4 class="mt-4 text-info-emphasis">Groups associated with {{ page.name }}</h4>
                         <div class="row">
-                            {% for project_permalink in page.projects %} {% assign project =
-                            site.data.new_remote.projects | where: "permalink", project_permalink | first %} {%
-                            if project %}
+                            {% for group_permalink in page.groups %} {% assign group =
+                            site.data.new_remote.groups | where: "permalink", group_permalink | first %} {%
+                            if group %}
                             <div class="col-lg-6 col-md-6 mb-3">
                                 <div class="border p-3 bg-white rounded shadow-sm">
-                                    <h6 class="font-weight-bold text-info-emphasis">
-                                        <a href="{{ project.permalink }}" class="text-dark">{{ project.name }}</a>
+                                    <h6 class="font-weight-bold text-danger-emphasis">
+                                        <a href="{{ group.permalink }}" class="text-dark">{{ group.name }}</a>
                                     </h6>
-                                    {% if project.short_description %}
-                                    <p class="text-muted">{{ project.short_description }}</p>
-                                    {% endif %}
+                                    <p class="text-muted">{{ group.bio }}</p>
                                 </div>
                             </div>
                             {% endif %} {% endfor %}

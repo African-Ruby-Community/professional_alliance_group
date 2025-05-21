@@ -1,0 +1,278 @@
+/* 
+ * Dark Mode Styles
+ * 
+ * NOTE: Dark mode is currently disabled but the code is retained for future use.
+ * To re-enable dark mode:
+ * 1. In theme-toggle.js, change all instances of "const enableDarkMode = false" to "const enableDarkMode = true"
+ * 2. In this file (dark-mode.css), change ".theme-toggle { display: none; }" to ".theme-toggle { display: flex; }"
+ */
+:root {
+  --light-bg: #ffffff;
+  --light-text: #333333;
+  --light-link: #007bff;
+  --light-border: #e0e0e0;
+  --light-card-bg: #f8f9fa;
+  --light-header-bg: #ffffff;
+  --light-footer-bg: #f8f9fa;
+
+  --dark-bg: #121212;
+  --dark-text: #e0e0e0;
+  --dark-link: #4da3ff;
+  --dark-border: #444444;
+  --dark-card-bg: #1e1e1e;
+  --dark-header-bg: #1a1a1a;
+  --dark-footer-bg: #1a1a1a;
+}
+
+/* Default (Light) Theme */
+body {
+  --bg-color: var(--light-bg);
+  --text-color: var(--light-text);
+  --link-color: var(--light-link);
+  --border-color: var(--light-border);
+  --card-bg: var(--light-card-bg);
+  --header-bg: var(--light-header-bg);
+  --footer-bg: var(--light-footer-bg);
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Theme */
+body.dark-mode {
+  --bg-color: var(--dark-bg);
+  --text-color: var(--dark-text);
+  --link-color: var(--dark-link);
+  --border-color: var(--dark-border);
+  --card-bg: var(--dark-card-bg);
+  --header-bg: var(--dark-header-bg);
+  --footer-bg: var(--dark-footer-bg);
+}
+
+/* Header */
+body.dark-mode .main-header {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Navigation */
+body.dark-mode .main-menu .navigation > li > a {
+  color: var(--text-color);
+}
+
+/* Fixed Header */
+body.dark-mode .main-header.fixed-header .main-box,
+body.dark-mode .main-header.header-style-two.fixed-header .main-box {
+  background-color: var(--header-bg);
+}
+
+body.dark-mode .header-style-two.fixed-header {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer */
+body.dark-mode .main-footer {
+  background-color: var(--footer-bg);
+  color: var(--text-color);
+}
+
+body.dark-mode .footer-widget h2.widget-title {
+  color: var(--text-color);
+}
+
+body.dark-mode .footer-widget .text p {
+  color: var(--text-color);
+}
+
+body.dark-mode .user-links a {
+  color: var(--text-color);
+}
+
+/* Cards and Sections */
+body.dark-mode .speaker-block-two .inner-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+body.dark-mode .speaker-block-two .info-box {
+  background-color: var(--card-bg);
+}
+
+body.dark-mode .speaker-block-two .info-box h4 a {
+  color: var(--text-color);
+}
+
+body.dark-mode .speaker-block-two .info-box .designation {
+  color: var(--text-color);
+}
+
+/* Bootstrap Card Styles */
+body.dark-mode .card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+body.dark-mode .card-body {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+body.dark-mode .card-title {
+  color: var(--text-color);
+}
+
+body.dark-mode .card-text {
+  color: var(--text-color);
+}
+
+/* Override Bootstrap background and text colors */
+body.dark-mode .bg-white {
+  background-color: var(--card-bg) !important;
+}
+
+body.dark-mode .text-black {
+  color: var(--text-color) !important;
+}
+
+body.dark-mode .text-muted {
+  color: var(--text-color) !important;
+  opacity: 0.8;
+}
+
+body.dark-mode .text-info-emphasis,
+body.dark-mode .text-danger-emphasis {
+  color: var(--link-color) !important;
+}
+
+body.dark-mode .text-dark {
+  color: var(--text-color) !important;
+}
+
+body.dark-mode .border {
+  border-color: var(--border-color) !important;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  bottom: 70px; /* Positioned above the scroll-to-top button */
+  right: 15px;
+  z-index: 999;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  display: none; /* Hidden by default until dark mode is fixed */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: #0056b3;
+}
+
+.theme-toggle i {
+  font-size: 24px;
+}
+
+/* Preloader */
+body.dark-mode .preloader-new {
+  background-color: var(--dark-bg);
+}
+
+/* Ensure preloader is properly styled in dark mode */
+body.dark-mode .preloader {
+  background-color: var(--dark-bg);
+}
+
+body.dark-mode .preloader-logo-new {
+  /* Use the dark mode logo for the preloader */
+  background-image: url(../../images/logo/aglogo.png);
+}
+
+/* Additional elements that might need styling */
+body.dark-mode .sec-title .title,
+body.dark-mode .sec-title h2,
+body.dark-mode .sec-title .text {
+  color: var(--text-color);
+}
+
+/* About Section */
+body.dark-mode .about-section {
+  background-color: var(--bg-color);
+}
+
+body.dark-mode .about-section .content-column .sec-title h2,
+body.dark-mode .about-section .content-column .sec-title .title,
+body.dark-mode .about-section .content-column .sec-title .text,
+body.dark-mode .about-section .content-column .list-style-one li {
+  color: var(--text-color);
+}
+
+/* Speakers Section (Members) */
+body.dark-mode .speakers-section:before {
+  background-color: var(--dark-card-bg);
+}
+
+body.dark-mode .speakers-section .sec-title h2 {
+  color: var(--text-color);
+}
+
+body.dark-mode .speaker-block .inner-box {
+  border-color: var(--border-color);
+}
+
+body.dark-mode .speaker-block .info-box {
+  background-color: var(--dark-card-bg);
+}
+
+body.dark-mode .speaker-block .info-box .name,
+body.dark-mode .speaker-block .info-box .inner .name a,
+body.dark-mode .speaker-block .info-box .designation {
+  color: var(--text-color);
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+body.dark-mode .btn-style-one {
+  background-color: var(--link-color);
+}
+
+/* Classes to replace inline styles */
+.section-no-margin-top {
+  margin-top: 0;
+}
+
+.title-color {
+  color: var(--link-color);
+}
+
+.member-image,
+.group-image,
+.project-image {
+  width: 200px;
+  height: 145px;
+}
+
+.group-image {
+  object-fit: cover;
+}
+
+/* Flex layout classes for index.html */
+.flex-center {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
