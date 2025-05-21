@@ -94,6 +94,9 @@ collections:
   groups:
     output: true
     permalink: /groups/:name/
+  projects:
+    output: true
+    permalink: /projects/:name/
 
 
 # Minifier settings

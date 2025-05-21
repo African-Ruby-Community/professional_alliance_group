@@ -2,7 +2,7 @@
     <div class="inner-box">
         <div class="info-box">
             <h4 class="name">
-                <a href="{{ include.member.url }}">{{ include.member.name }}</a>
+                <a href="{{ include.member.permalink }}">{{ include.member.name }}</a>
             </h4>
             <span class="designation">{{ include.designation }}
                 {% if include.member.is_keynote == true %}
@@ -12,7 +12,7 @@
         </div>
         <div class="image-box">
             <figure class="image">
-                <a href="{{ include.member.url }}">
+                <a href="{{ include.member.permalink }}">
                     <img src="{{ include.member.image }}" alt="{{ include.member.name }}"
                          style="width: 200px; height: 145px"/>
                 </a>

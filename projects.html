@@ -1,0 +1,30 @@
+---
+layout: application
+permalink: /projects
+title: "Admanus Group Projects"
+description: "Explore our projects"
+image: "/images/logo/ag_logo_coloured.png"
+---
+
+<!-- Preloader -->
+<div class="preloader-new">
+  <!-- Logo -->
+  <div class="preloader-logo-new"></div>
+
+  <!-- Animated Loading Text -->
+  <div class="loader-new"></div>
+</div>
+
+<!--Display Projects-->
+<section class="speakers-section-two" style="margin-top: 0">
+  <div class="auto-container">
+    <div class="sec-title text-center my-4">
+      <span class="display-4 font-weight-bold" style="color: #007bff;">Projects</span>
+    </div>
+    <div class="row top-pd-mobile">
+      {% for project in site.data.new_remote.projects %}
+      {% include project_block.liquid project=project designation="Project" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

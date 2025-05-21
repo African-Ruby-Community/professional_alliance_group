@@ -22,7 +22,7 @@ image: "/images/logo/ag_logo_coloured.png"
       <span class="display-4 font-weight-bold" style="color: #007bff;">Members</span>
     </div>
     <div class="row top-pd-mobile">
-      {% for member in site.members %}
+      {% for member in site.data.new_remote.members %}
       {% if member.is_keynote == true %}
       {% include member_block.liquid member=member designation="Keynote Member" %}
       {% else %}
