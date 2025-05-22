@@ -17,6 +17,7 @@ SPREADSHEET_ID = ENV['SPREADSHEET_ID']
 SHEETS = eval(ENV['SHEETS'])
 
 # Authorize with service account
+# Define the scope for Google Sheets API
 scope = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 authorizer = Google::Auth::ServiceAccountCredentials.make_creds(
   json_key_io: File.open(CREDENTIALS_PATH),
@@ -36,5 +37,6 @@ SHEETS.each do |sheet|
   headers = values.first
   data = values[1..-1].map { |row| headers.zip(row).to_h }
 
+  # Save data to a json data file
   File.write("#{DATA_FOLDER}/#{sheet}.json", JSON.pretty_generate(data))
 end
