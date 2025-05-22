@@ -2,19 +2,19 @@
     <div class="inner-box">
         <div class="info-box">
             <h4 class="name">
-                <a href="{{ include.group.url }}">{{ include.group.name }}</a>
+                <a href="{{ include.group.permalink }}">{{ include.group.name }}</a>
             </h4>
-            <span class="short-description">{{ include.group.short_description }}</span>
+            <span class="short-description">{{ include.group.bio }}</span>
         </div>
         <div class="image-box">
             <figure class="image">
-                <a href="{{ include.group.url }}">
+                <a href="{{ include.group.permalink }}">
                     {% if include.group.image %}
                         <img src="{{ include.group.image }}" alt="{{ include.group.name }}"
-                             style="width: 200px; height: 145px; object-fit: cover;"/>
+                             class="group-image"/>
                     {% else %}
                         <img src="/images/groups/default.png" alt="{{ include.group.name }}"
-                             style="width: 200px; height: 145px; object-fit: cover;"/>
+                             class="group-image"/>
                     {% endif %}
                 </a>
             </figure>
@@ -36,11 +36,14 @@
                         <a href="{{ include.group.website }}"><i class="fas fa-globe"></i></a>
                     </li>
                 {% endif %}
+                {% comment %}
+                <!-- Email field not present in new_remote/groups.yml -->
                 {% if include.group.email and include.group.email != "" %}
                     <li>
                         <a href="mailto:{{ include.group.email }}"><i class="fas fa-envelope"></i></a>
                     </li>
                 {% endif %}
+                {% endcomment %}
             </ul>
         </div>
     </div>

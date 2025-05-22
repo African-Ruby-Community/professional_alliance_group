@@ -12,13 +12,13 @@ image: "/images/logo/arc_logo_coloured_groups.png" # Consider a different image 
     <div class="loader-new"></div>
 </div>
 
-<section class="speakers-section-two" style="margin-top: 0">
+<section class="speakers-section-two section-no-margin-top">
     <div class="auto-container">
         <div class="sec-title text-center my-4">
-            <span class="display-4 font-weight-bold" style="color: #007bff;">Collaboration Groups</span>
+            <span class="display-4 font-weight-bold title-color">Collaboration Groups</span>
         </div>
         <div class="row top-pd-mobile">
-            {% for group in site.groups %}
+            {% for group in site.data.new_remote.groups %}
             {% include group_block.liquid group=group %}
             {% endfor %}
         </div>

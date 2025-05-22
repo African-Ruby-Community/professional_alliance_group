@@ -19,4 +19,20 @@ ai-research-collective:
     - nlp-analysis
     - computer-vision-study
 
+group1:
+  members:
+    - alice
+    - james
+  projects:
+    - project1
+    - project2
+
+group2:
+  members:
+    - james
+    - banta
+  projects:
+    - project3
+    - project4
+
 # Add more groups and their relationships here 

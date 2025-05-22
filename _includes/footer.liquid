@@ -15,8 +15,10 @@
                                 <div class="logo">
                                     <a href="{{ site.baseurl }}/index.html"
                                     ><img
-                                                src="{{ '/images/logo/aglogo.png' | prepend: site.baseurl }}"
-                                                class="lazyload"
+                                                class="theme-sensitive-logo lazyload"
+                                                src="{{ '/images/logo/ag_logo_coloured.png' | prepend: site.baseurl }}"
+                                                data-light-src="{{ '/images/logo/ag_logo_coloured.png' | prepend: site.baseurl }}"
+                                                data-dark-src="{{ '/images/logo/aglogo.png' | prepend: site.baseurl }}"
                                                 alt="Admanus Group"
                                                 width="200"
                                                 height="50"
@@ -48,7 +50,7 @@
                                     </li>
                                     <li>
                                         <a
-                                                href="[LinkedIn link]""
+                                                href="[LinkedIn link]"
                                                 aria-label="Visit our LinkedIn page"
                                         ><i class="fab fa-linkedin"></i></a>
                                     </li>

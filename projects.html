@@ -1,8 +1,8 @@
 ---
 layout: application
-permalink: /members
-title: "Admanus Group Members"
-description: "Meet our members"
+permalink: /projects
+title: "Admanus Group Projects"
+description: "Explore our projects"
 image: "/images/logo/ag_logo_coloured.png"
 ---
 
@@ -15,19 +15,15 @@ image: "/images/logo/ag_logo_coloured.png"
   <div class="loader-new"></div>
 </div>
 
-<!--Display Members-->
+<!--Display Projects-->
 <section class="speakers-section-two section-no-margin-top">
   <div class="auto-container">
     <div class="sec-title text-center my-4">
-      <span class="display-4 font-weight-bold title-color">Members</span>
+      <span class="display-4 font-weight-bold title-color">Projects</span>
     </div>
     <div class="row top-pd-mobile">
-      {% for member in site.data.new_remote.members %}
-      {% if member.is_keynote == true %}
-      {% include member_block.liquid member=member designation="Keynote Member" %}
-      {% else %}
-      {% include member_block.liquid member=member designation="Member" %}
-      {% endif %}
+      {% for project in site.data.new_remote.projects %}
+      {% include project_block.liquid project=project designation="Project" %}
       {% endfor %}
     </div>
   </div>

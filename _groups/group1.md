@@ -1,25 +1,15 @@
 ---
-layout: collaboration_group
-name: Open Dev Team
-bio: "A community of developers building open-source tools for civic tech."
-details: "We collaborate on real-world challenges, focusing on transparency, accessibility, and scalability."
-image: "/images/compressed/community.jpg"
-twitter: https://twitter.com/opendevteam
-website: https://github.com/opendevteam
-linkedin: ""
-permalink: /groups/open-dev
-projects:
-  - title: Civic Portal
-    description: "A platform that allows citizens to monitor public service delivery and budgets."
-    link: https://github.com/opendevteam/civic-portal
-    contributors:
-      - name: Alice Njeri
-        image: "/images/members/banta.jpg"
-        permalink: "/members/alice"
-      - name: James Otieno
-        image: "/images/members/francis.jpg"
-        permalink: "/members/james"
-  - title: Budget Tracker API
-    description: "An open API for tracking government spending in real-time."
-    link: https://budget-api.opendev.org
+layout: groups
+name: Open Dev
+bio: Nemo enim ipsam voluptatem
+details: We collaborate on real-world challenges
+short_description: Nemo enim ipsam voluptatem
+long_description: We collaborate on real-world challenges
+image: /images/compressed/remote_groups/groupsgroup1_optimized.jpg
+twitter: https://x.com/Google
+website: 
+linkedin: https://www.linkedin.com/
+permalink: /groups/group1
+members: ["/members/alice", "/members/james"]
+projects: ["/projects/project1", "/projects/project2"]
 ---

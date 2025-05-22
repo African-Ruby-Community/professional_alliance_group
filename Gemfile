@@ -12,5 +12,7 @@ gem 'csv'
 gem "dotenv", "~> 3.1"
 
 # Google sheet gems
-gem 'google-apis-sheets_v4', '~> 0.2.0'
-gem 'googleauth'
+gem 'googleauth', '~> 1.14'
+gem 'google-api-client', '~> 0.53.0'
+gem 'google-apis-sheets_v4', '~> 0.41'
+gem 'mini_magick', '~> 4.12'
