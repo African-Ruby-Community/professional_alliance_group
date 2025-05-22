@@ -195,6 +195,31 @@ def optimize_image(input_path, output_dir, output_filename = nil)
   end
 end
 
+# --- Helper function to mask sensitive URLs for logging ---
+def mask_url_for_logging(url)
+  return "[URL REDACTED]" unless url
+
+  begin
+    uri = URI.parse(url)
+
+    # For Google Drive URLs, mask the file ID
+    if url.include?('drive.google.com')
+      if url.include?('/file/d/')
+        # Format: https://drive.google.com/file/d/{fileId}/view?usp=drive_link
+        return url.gsub(/\/file\/d\/([^\/]+)/, '/file/d/[FILE_ID_REDACTED]')
+      elsif url.include?('id=')
+        # Format: https://drive.google.com/open?id={fileId}
+        return url.gsub(/id=([^&]+)/, 'id=[FILE_ID_REDACTED]')
+      end
+    end
+
+    # For other URLs, just show the domain
+    "#{uri.scheme}://#{uri.host}/[PATH_REDACTED]"
+  rescue URI::InvalidURIError
+    "[INVALID_URL_REDACTED]"
+  end
+end
+
 # --- Helper function to extract Google Drive file ID ---
 def extract_google_drive_file_id(url)
   return nil unless url.include?('drive.google.com')
@@ -284,7 +309,7 @@ sheets_config.each do |filename_key, config_data|
       if image_column_index && record[current_image_column_name.downcase] && !record[current_image_column_name.downcase].to_s.strip.empty?
         image_url = record[current_image_column_name.downcase].strip
         begin
-          puts "⬇️ Attempting to download image from: #{image_url}"
+          puts "⬇️ Attempting to download image from: #{mask_url_for_logging(image_url)}"
           uri = URI.parse(image_url)
           file_extension = File.extname(uri.path).downcase
 
@@ -364,13 +389,13 @@ sheets_config.each do |filename_key, config_data|
           puts "✅ Image saved to: #{local_file_system_path} and optimized to: #{optimized_path}"
           puts "✅ Data set to: #{jekyll_relative_image_path}"
         rescue OpenURI::HTTPError => e
-          puts "❌ Error downloading image from #{image_url}: #{e.message}"
+          puts "❌ Error downloading image from #{mask_url_for_logging(image_url)}: #{e.message}"
           record[current_image_column_name.downcase] = nil # Or handle error as needed
         rescue URI::InvalidURIError => e
-          puts "❌ Invalid image URL: #{image_url} - #{e.message}"
+          puts "❌ Invalid image URL: #{mask_url_for_logging(image_url)} - #{e.message}"
           record[current_image_column_name.downcase] = nil
         rescue StandardError => e
-          puts "❌ Unexpected error processing image from #{image_url}: #{e.message}"
+          puts "❌ Unexpected error processing image from #{mask_url_for_logging(image_url)}: #{e.message}"
           record[current_image_column_name.downcase] = nil
         end
       end

@@ -21,19 +21,19 @@ setup:
 
 # Sync data from Google Sheets
 sync:
-	ruby _build/sync_google_sheets.rb
+	bundle exec ruby _build/sync_google_sheets.rb
 
 # Generate member files
 generate-members:
-	ruby _build/generate_member_files.rb
+	bundle exec ruby _build/generate_member_files.rb
 
 # Generate group files
 generate-groups:
-	ruby _build/generate_group_files.rb
+	bundle exec ruby _build/generate_group_files.rb
 
 # Generate project files
 generate-projects:
-	ruby _build/generate_project_files.rb
+	bundle exec ruby _build/generate_project_files.rb
 
 # Generate all files (members, groups, and projects)
 generate: generate-members generate-groups generate-projects
@@ -91,4 +91,4 @@ test-minification:
 		$(MAKE) build; \
 	fi
 	@echo "Testing minification of HTML, CSS, and JavaScript files..."
-	@ruby _build/test_minification.rb
+	@bundle exec ruby _build/test_minification.rb

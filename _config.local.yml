@@ -49,8 +49,9 @@ markdown: kramdown
 # Plugins to use with Jekyll
 plugins:
   - jekyll-sitemap
-  - jekyll-minifier
+#  - jekyll-minifier
   - jekyll-assets
+  - jekyll-terser
 
 # Asset settings
 assets:
@@ -62,7 +63,9 @@ assets:
     js:
       development: true
       production: true
-  js_compressor: uglifier
+#  js_compressor:
+#    uglifier:
+#      harmony: true
   css_compressor: sass
   sources:
     - _assets/javascripts
@@ -88,14 +91,17 @@ minifier:
     preserve_comments: false
     preserve_hacks: true
     remove_inlined_files: true
-  js:
-    compress: true
-    mangle: true
-    output_opts:
-      max_line_len: 32000
-      beautify: false
-    mangle_opts:
-      toplevel: true
+#  js:
+#    compress: true
+#    mangle: true
+#    harmony: true
+#    uglifier_args:
+#      harmony: true
+#    output_opts:
+#      max_line_len: 32000
+#      beautify: false
+#    mangle_opts:
+#      toplevel: true
   html:
     remove_comments: true
     remove_empty_lines: true
