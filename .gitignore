@@ -76,3 +76,6 @@ public
 
 # Gems will be installed here. This is used by Gitlab CI/CD
 vendor
+
+# Ignore remote fetched data
+_data/new_remote/*
