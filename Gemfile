@@ -9,7 +9,8 @@ gem 'jekyll-sitemap'
 gem 'jekyll-minifier'
 gem 'jekyll-assets'
 gem 'csv'
-
 gem "dotenv", "~> 3.1"
 
-gem 'google-api-client', '~> 0.17'
+# Google sheet gems
+gem 'google-apis-sheets_v4', '~> 0.2.0'
+gem 'googleauth'
