@@ -1,8 +1,6 @@
-# WIP
-
-require 'google/apis/sheets_v4'
-require 'googleauth'
-require 'yaml'
+require "google/apis/sheets_v4"
+require "googleauth"
+require "json"
 require 'fileutils'
 require 'dotenv'
 
@@ -13,40 +11,30 @@ DATA_FOLDER = "_data/new_remote"
 FileUtils.mkdir_p(DATA_FOLDER)
 
 # Path to your service account JSON file
-CREDENTIALS_PATH = ENV['CREDENTIALS_PATH'] || "../service_acc.json"
+CREDENTIALS_PATH = ENV['CREDENTIALS_PATH'] || "./service_acc.json"
 APPLICATION_NAME = ENV['APPLICATION_NAME'] || 'GoogleSheetsSync'
 SPREADSHEET_ID = ENV['SPREADSHEET_ID']
+SHEETS = eval(ENV['SHEETS'])
 
-# Sheet names and output files
-sheets_config = {
-  ENV['SHEET']
-}
+# Authorize with service account
+scope = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
+authorizer = Google::Auth::ServiceAccountCredentials.make_creds(
+  json_key_io: File.open(CREDENTIALS_PATH),
+  scope: scope
+)
+authorizer.fetch_access_token!
 
-# Define the scope for Google Sheets API
-SCOPE = Google::Apis::SheetsV4::AUTH_SPREADSHEETS_READONLY
+# Initialize Sheets API
+service = Google::Apis::SheetsV4::SheetsService.new
+service.authorization = authorizer
 
-# Function to authorize using the service account
-def authorize
-  Google::Auth::ServiceAccountCredentials.make_creds(
-    json_key_io: File.open(CREDENTIALS_PATH),
-    scope: SCOPE
-  )
+SHEETS.each do |sheet|
+  response = service.get_spreadsheet_values(SPREADSHEET_ID, sheet)
+
+  # Convert to JSON
+  values = response.values
+  headers = values.first
+  data = values[1..-1].map { |row| headers.zip(row).to_h }
+
+  File.write("#{DATA_FOLDER}/#{sheet}.json", JSON.pretty_generate(data))
 end
-
-# Initialize the GOOGLE Sheets API service
-sheets_service = Google::Apis::SheetsV4::SheetsService.new
-sheets_service.client_options.application_name = APPLICATION_NAME
-sheets_service.authorization = authorize
-
-# Map of filename to their respective Spreadsheet IDs and sheet names
-
-sheets_config = {
-  'speakers' => {
-    spreadsheet_id: spreadsheet_id,
-    sheet_name: ENV['SHEET1_NAME'] || 'Sheet1'
-  },
-  'sponsors' => {
-    spreadsheet_id: spreadsheet_id,
-    sheet_name: ENV['SHEET2_NAME'] || 'Sheet2'
-  }
-}
