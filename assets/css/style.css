@@ -3201,6 +3201,10 @@ media .page-title .bread-crumb li a:hover {
     padding-left: 20px;
 }
 
+.speaker-block-two .text-box p {
+    font-size: 14px;
+}
+
 .speaker-block-two .image-box .image {
   position: relative;
   display: inline-block;
