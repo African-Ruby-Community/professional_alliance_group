@@ -38,13 +38,9 @@ def authorize_google_sheets(path, json_string)
   ).tap(&:fetch_access_token!)
 end
 
-authorizer = Google::Auth::ServiceAccountCredentials.make_creds(
-  json_key_io: File.open(CREDENTIALS_PATH), scope: scope)
-authorizer.fetch_access_token!
-
 # Initialize Sheets API
 service = Google::Apis::SheetsV4::SheetsService.new
-service.authorization = authorizer
+service.authorization = authorize_google_sheets(CREDENTIALS_PATH, SERVICE_ACCOUNT_JSON)
 
 SHEETS.each do |sheet|
   response = service.get_spreadsheet_values(SPREADSHEET_ID, sheet)
