@@ -20,9 +20,7 @@ SHEETS = eval(ENV['SHEETS'])
 # Define the scope for Google Sheets API
 scope = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 authorizer = Google::Auth::ServiceAccountCredentials.make_creds(
-  json_key_io: File.open(CREDENTIALS_PATH),
-  scope: scope
-)
+json_key_io: File.open(CREDENTIALS_PATH), scope: scope)
 authorizer.fetch_access_token!
 
 # Initialize Sheets API
