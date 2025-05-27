@@ -15,22 +15,14 @@
         </div>
         <div class="social-box">
             <ul class="social-links social-icon-colored">
-                <!--                <li>-->
-                <!--                    <a href="#"><i class="fab fa-facebook-f"></i></a>-->
-                <!--                </li>-->
-                {% if include.member.twitter and include.member.twitter != "" %}
+                <!-- Website 1 -->
+                {% if include.member['Website 1'] and include.member['Website 1'] != "" %}
                     <li>
-                        <a href="{{ include.member.twitter }}"><i class="fa-brands fa-x-twitter"></i></a>
-                    </li>
-                {% endif %}
-                {% if include.member.linkedin and include.member.linkedin != "" %}
-                    <li>
-                        <a href="{{ include.member.linkedin }}"><i class="fab fa-linkedin"></i></a>
-                    </li>
-                {% endif %}
-                {% if include.member.website and include.member.website != "" %}
-                    <li>
-                        <a href="{{ include.member.website }}"><i class="fab fa-sistrix"></i></a>
+                        {% assign link_url = include.member['Website 1'] %}
+                        <a href="{{ link_url }}">
+                            {% assign link_url = include.member['Website 1'] %}
+                            {% include link_icon_type.liquid link=link_url  %}
+                        </a>
                     </li>
                 {% endif %}
             </ul>
