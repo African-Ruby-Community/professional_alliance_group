@@ -11,7 +11,7 @@ DATA_FOLDER = "_data/new_remote"
 FileUtils.mkdir_p(DATA_FOLDER)
 
 # Path to your service account JSON file
-CREDENTIALS_PATH = ENV['CREDENTIALS_PATH'] || "./service_acc.json"
+CREDENTIALS_PATH = ENV['CREDENTIALS_PATH']
 APPLICATION_NAME = ENV['APPLICATION_NAME'] || 'GoogleSheetsSync'
 SPREADSHEET_ID = ENV['SPREADSHEET_ID']
 SHEETS = eval(ENV['SHEETS'])
