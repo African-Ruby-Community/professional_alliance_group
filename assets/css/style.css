@@ -3119,7 +3119,7 @@ media .page-title .bread-crumb li a:hover {
   position: relative;
   background-color: #ffffff;
   overflow: hidden;
-  padding: 50px 0 40px;
+  padding: 10px 0 0px;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid #dddddd;
   border-bottom: 5px solid #1976D2;
@@ -3194,6 +3194,11 @@ media .page-title .bread-crumb li a:hover {
   display: block;
   margin-bottom: 30px;
   text-align: center;
+}
+
+.speaker-block-two .text-box {
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .speaker-block-two .image-box .image {
