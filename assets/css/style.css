@@ -3244,7 +3244,7 @@ media .page-title .bread-crumb li a:hover {
   display: block;
   width: 32px;
   height: 32px;
-  border: 1px solid #eeeeee;
+  /*border: 1px solid #eeeeee;*/
   font-size: clamp(0.75rem, 3vw, 1.1rem);
   line-height: 30px;
   background-color: #ffffff;
