@@ -40,16 +40,24 @@ permissions:
 
 jobs:
   deploy:
-    # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3.5"
+          ruby-version: "3.4.2"
           bundler-cache: true
+
+      # --- NEW STEP: Setup Node.js for JavaScript minification ---
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Recommended stable Node.js version
+      # --- END NEW STEP ---
+
       - name: Update _config.yml ⚙️
         uses: fjogeleit/yaml-update-action@main
         with:
@@ -57,6 +65,7 @@ jobs:
           valueFile: "_config.yml"
           propertyPath: "giscus.repo"
           value: ${{ github.repository }}
+
       - name: Sync Google Sheets and Generate Files 🔄
         env:
           SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
@@ -67,17 +76,20 @@ jobs:
           SHEET1_IMAGE_COLUMN: image
           SHEET1_IMAGE_SUBDIR: remote_members
           SHEET2_FILENAME: groups
-          SHEET2_NAME: groups
+          SHEET2_NAME: collaborations
           SHEET2_IMAGE_COLUMN: image
           SHEET2_IMAGE_SUBDIR: remote_groups
           SHEET3_FILENAME: projects
           SHEET3_NAME: projects
           SHEET3_IMAGE_COLUMN: image
-          SHEET3_IMAGE_SUBDIR: remote_groups
+          SHEET3_IMAGE_SUBDIR: remote_projects
           SHEET4_FILENAME: project_contributors
-          SHEET4_NAME: project_contributors
+          SHEET4_NAME: asks
+          SHEET5_FILENAME: group_contributors
+          SHEET5_NAME: squads
+
         run: |
-          ruby _build/sync_google_sheets.rb
+          bundle exec ruby _build/sync_google_sheets.rb
           make generate
 
       - name: Install and Build 🔧
