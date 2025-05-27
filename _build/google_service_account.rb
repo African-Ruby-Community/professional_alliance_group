@@ -35,6 +35,18 @@ SHEETS.each do |sheet|
   headers = values.first
   data = values[1..-1].map { |row| headers.zip(row).to_h }
 
+  data.each do |item|
+    next if item['image'].nil? # Skip if there is no image url
+    gdrive_link = item['image']
+    extract = gdrive_link.scan(/https:\/\/drive.google.com\/file\/d\/(.*)\/view/)
+
+    next unless extract.count > 0 # Skip if Grive link format is not correct
+    gdrive_file_id = extract&.first&.first
+
+    next if gdrive_file_id.nil? # Skip if id is nil
+    item['image'] = "https://lh3.googleusercontent.com/d/#{gdrive_file_id}=w1000?authuser=1/view"
+  end
+
   # Save data to a json data file
   File.write("#{DATA_FOLDER}/#{sheet}.json", JSON.pretty_generate(data))
 end
