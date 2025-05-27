@@ -22,7 +22,7 @@ SHEETS = eval(ENV['SHEETS'])
 scope = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 authorizer = if SERVICE_ACCOUNT_JSON && !SERVICE_ACCOUNT_JSON.empty?
                Google::Auth::ServiceAccountCredentials.make_creds(
-                 json_key_io: File.open(CREDENTIALS_PATH),
+                 json_key_io: File.open(SERVICE_ACCOUNT_JSON),
                  scope: scope
                )
              else
