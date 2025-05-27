@@ -51,15 +51,15 @@ SHEETS.each do |sheet|
   data = values[1..-1].map { |row| headers.zip(row).to_h }
 
   data.each do |item|
-    next if item['image'].nil? # Skip if there is no image url
-    gdrive_link = item['image']
+    next if item['Image URL'].nil? # Skip if there is no image url
+    gdrive_link = item['Image URL']
     extract = gdrive_link.scan(/https:\/\/drive.google.com\/file\/d\/(.*)\/view/)
 
     next unless extract.count > 0 # Skip if Grive link format is not correct
     gdrive_file_id = extract&.first&.first
 
     next if gdrive_file_id.nil? # Skip if id is nil
-    item['image'] = "https://lh3.googleusercontent.com/d/#{gdrive_file_id}=w1000?authuser=1/view"
+    item['Image URL'] = "https://lh3.googleusercontent.com/d/#{gdrive_file_id}=w1000?authuser=1/view"
   end
 
   # Save data to a json data file
