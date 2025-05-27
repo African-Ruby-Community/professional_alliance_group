@@ -5,6 +5,7 @@ on:
     branches:
       - test
     paths:
+      - "_build/**"
       - ".github/**"
       - "assets/**"
       - "documents/**"
@@ -76,11 +77,10 @@ jobs:
 
         run: |
           bundle exec ruby _build/google_service_account.rb
-          make generate
 
       - name: Install and Build 🔧
         run: |
-          make build
+          bundle exec jekyll build
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
