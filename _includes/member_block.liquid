@@ -25,6 +25,17 @@
                         </a>
                     </li>
                 {% endif %}
+
+                <!-- Website 2 -->
+                {% if include.member['Website 2'] and include.member['Website 2'] != "" %}
+                    <li>
+                        {% assign link_url = include.member['Website 2'] %}
+                        <a href="{{ link_url }}">
+                            {% assign link_url = include.member['Website 2'] %}
+                            {% include link_icon_type.liquid link=link_url  %}
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
