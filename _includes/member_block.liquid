@@ -47,6 +47,18 @@
                         </a>
                     </li>
                 {% endif %}
+
+                <!-- Social Media Link 2 -->
+                {% if include.member['Social Media Link 2'] and
+                include.member['Social Media Link2'] != "" %}
+                    <li>
+                        {% assign link_url = include.member['Social Media Link 1'] %}
+                        <a href="{{ link_url }}">
+                            {% assign link_url = include.member['Social Media Link 1'] %}
+                            {% include link_icon_type.liquid link=link_url  %}
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
