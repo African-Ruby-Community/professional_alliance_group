@@ -81,4 +81,7 @@ vendor
 
 _data/new_remote/*
 
+# Ignore environment variables file
 .env
+
+
