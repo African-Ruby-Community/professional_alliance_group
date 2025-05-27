@@ -71,25 +71,10 @@ jobs:
           SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           APPLICATION_NAME: JekyllDataImporter
           SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
-          SHEET1_FILENAME: members
-          SHEET1_NAME: members
-          SHEET1_IMAGE_COLUMN: image
-          SHEET1_IMAGE_SUBDIR: remote_members
-          SHEET2_FILENAME: groups
-          SHEET2_NAME: collaborations
-          SHEET2_IMAGE_COLUMN: image
-          SHEET2_IMAGE_SUBDIR: remote_groups
-          SHEET3_FILENAME: projects
-          SHEET3_NAME: projects
-          SHEET3_IMAGE_COLUMN: image
-          SHEET3_IMAGE_SUBDIR: remote_projects
-          SHEET4_FILENAME: project_contributors
-          SHEET4_NAME: asks
-          SHEET5_FILENAME: group_contributors
-          SHEET5_NAME: squads
+          SHEETS: ${{ secrets.SHEETS }}
 
         run: |
-          bundle exec ruby _build/sync_google_sheets.rb
+          bundle exec ruby _build/google_service_account.rb
           make generate
 
       - name: Install and Build 🔧
