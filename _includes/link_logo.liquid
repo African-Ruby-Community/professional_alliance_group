@@ -1,0 +1,9 @@
+{% if include.link contains 'x.com' or include.link contains 'twitter.com' %}
+    <i class="fa-brands fa-x-twitter"></i>
+{% elsif include.link contains 'linkedin' %}
+    <i class="fab fa-linkedin"></i>
+{% elsif include.link contains 'facebook' %}
+    <i class="fab fa-facebook"></i>
+{% else %}
+    <i class="fas fa-globe"></i>
+{% endif %}
