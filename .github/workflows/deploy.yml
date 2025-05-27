@@ -89,4 +89,4 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: public
+          folder: _site
