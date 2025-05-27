@@ -23,11 +23,7 @@ image: "/images/logo/ag_logo_coloured.png"
     </div>
     <div class="row top-pd-mobile">
       {% for member in site.data.new_remote.members %}
-      {% if member.is_keynote == true %}
-      {% include member_block.liquid member=member designation="Keynote Member" %}
-      {% else %}
-      {% include member_block.liquid member=member designation="Member" %}
-      {% endif %}
+        {% include member_block.liquid member=member designation="Keynote Member" %}
       {% endfor %}
     </div>
   </div>

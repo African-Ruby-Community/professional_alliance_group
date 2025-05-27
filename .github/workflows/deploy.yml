@@ -3,8 +3,10 @@ name: Deploy site
 on:
   push:
     branches:
-      - main
+      - test
     paths:
+      - "_build/**"
+      - ".github/**"
       - "assets/**"
       - "documents/**"
       - "fonts/**"
@@ -19,7 +21,7 @@ on:
       - "!README.md"
   pull_request:
     branches:
-      - main
+      - test
     paths:
       - "assets/**"
       - "documents/**"
@@ -71,30 +73,14 @@ jobs:
           SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           APPLICATION_NAME: JekyllDataImporter
           SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
-          SHEET1_FILENAME: members
-          SHEET1_NAME: members
-          SHEET1_IMAGE_COLUMN: image
-          SHEET1_IMAGE_SUBDIR: remote_members
-          SHEET2_FILENAME: groups
-          SHEET2_NAME: collaborations
-          SHEET2_IMAGE_COLUMN: image
-          SHEET2_IMAGE_SUBDIR: remote_groups
-          SHEET3_FILENAME: projects
-          SHEET3_NAME: projects
-          SHEET3_IMAGE_COLUMN: image
-          SHEET3_IMAGE_SUBDIR: remote_projects
-          SHEET4_FILENAME: project_contributors
-          SHEET4_NAME: asks
-          SHEET5_FILENAME: group_contributors
-          SHEET5_NAME: squads
+          SHEETS: ${{ secrets.SHEETS }}
 
         run: |
-          bundle exec ruby _build/sync_google_sheets.rb
-          make generate
+          bundle exec ruby _build/google_service_account.rb
 
       - name: Install and Build 🔧
         run: |
-          make build
+          bundle exec jekyll build
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
@@ -103,4 +89,4 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: public
+          folder: _site

@@ -2,40 +2,60 @@
     <div class="inner-box">
         <div class="info-box">
             <h4 class="name">
-                <a href="{{ include.member.permalink }}">{{ include.member.name }}</a>
+                <a href="{{ include.member.permalink }}">{{ include.member['Full Name'] }}</a>
             </h4>
-            <span class="designation">{{ include.designation }}
-                {% if include.member.is_keynote == true %}
-                    <i class="fas fa-video"></i>
-                {% endif %}
-            </span>
         </div>
         <div class="image-box">
             <figure class="image">
                 <a href="{{ include.member.permalink }}">
-                    <img src="{{ include.member.image }}" alt="{{ include.member.name }}"
+                    <img src="{{ include.member['Image URL'] }}" alt="{{ include.member['Full Name'] }}"
                          class="member-image"/>
                 </a>
             </figure>
         </div>
+        <div class="text-box">
+            <p>{{ include.member['Short Bio (150 chars)'] }}</p>
+        </div>
         <div class="social-box">
             <ul class="social-links social-icon-colored">
-                <!--                <li>-->
-                <!--                    <a href="#"><i class="fab fa-facebook-f"></i></a>-->
-                <!--                </li>-->
-                {% if include.member.twitter and include.member.twitter != "" %}
+                <!-- Website 1 -->
+                {% if include.member['Website 1'] and include.member['Website 1'] != "" %}
                     <li>
-                        <a href="{{ include.member.twitter }}"><i class="fa-brands fa-x-twitter"></i></a>
+                        {% assign link_url = include.member['Website 1'] %}
+                        <a href="{{ link_url }}">
+                            {% include link_icon_type.liquid link=link_url  %}
+                        </a>
                     </li>
                 {% endif %}
-                {% if include.member.linkedin and include.member.linkedin != "" %}
+
+                <!-- Website 2 -->
+                {% if include.member['Website 2'] and include.member['Website 2'] != "" %}
                     <li>
-                        <a href="{{ include.member.linkedin }}"><i class="fab fa-linkedin"></i></a>
+                        {% assign link_url = include.member['Website 2'] %}
+                        <a href="{{ link_url }}">
+                            {% include link_icon_type.liquid link=link_url  %}
+                        </a>
                     </li>
                 {% endif %}
-                {% if include.member.website and include.member.website != "" %}
+
+                <!-- Social Media Link 1 -->
+                {% if include.member['Social Media Link 1'] and include.member['Social Media Link 1'] != "" %}
                     <li>
-                        <a href="{{ include.member.website }}"><i class="fab fa-sistrix"></i></a>
+                        {% assign link_url = include.member['Social Media Link 1'] %}
+                        <a href="{{ link_url }}">
+                            {% include link_icon_type.liquid link=link_url  %}
+                        </a>
+                    </li>
+                {% endif %}
+
+                <!-- Social Media Link 2 -->
+                {% if include.member['Social Media Link 2'] and
+                include.member['Social Media Link 2'] != "" %}
+                    <li>
+                        {% assign link_url = include.member['Social Media Link 2'] %}
+                        <a href="{{ link_url }}">
+                            {% include link_icon_type.liquid link=link_url  %}
+                        </a>
                     </li>
                 {% endif %}
             </ul>

@@ -84,4 +84,5 @@ _data/new_remote/*
 # Ignore environment variables file
 .env
 
-
+# Ignore this file because it contains sensitive credentials
+service_acc.json
