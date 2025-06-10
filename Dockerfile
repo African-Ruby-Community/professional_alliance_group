@@ -53,15 +53,15 @@ ENV EXECJS_RUNTIME=Node \
 # create a directory for the jekyll site
 RUN mkdir /srv/jekyll
 
-# copy the Gemfile and Gemfile.lock to the image
-ADD Gemfile.lock /srv/jekyll
-ADD Gemfile /srv/jekyll
-
 # set the working directory
 WORKDIR /srv/jekyll
 
+# copy the Gemfile and Gemfile.lock to the image
+ADD Gemfile.lock .
+ADD Gemfile .
+
 # Copy all files to the working directory
-COPY . /srv/jekyll/
+COPY . .
 
 # install jekyll and dependencies
 RUN gem install --no-document jekyll bundler
@@ -70,7 +70,7 @@ RUN gem install --no-document jekyll bundler
 # Assuming your script needs the 'google-apis-sheets-v4' and 'googleauth' gems
 RUN gem install --no-document google-apis-sheets_v4 googleauth
 
-RUN bundle install --no-cache
+RUN bundle install
 
 # Copy your Google Sheets script into the image
 COPY _build/google_service_account.rb /srv/jekyll/_build/
@@ -87,4 +87,4 @@ COPY bin/entry_point.sh /tmp/entry_point.sh
 # set the ownership of the jekyll site directory to the non-root user
 # USER $USERNAME
 
-CMD ["/tmp/entry_point.sh"]
+ENTRYPOINT ["/tmp/entry_point.sh"]
