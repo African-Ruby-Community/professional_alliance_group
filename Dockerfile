@@ -70,7 +70,7 @@ RUN gem install --no-document jekyll bundler
 # Assuming your script needs the 'google-apis-sheets-v4' and 'googleauth' gems
 RUN gem install --no-document google-apis-sheets_v4 googleauth
 
-RUN bundle install --no-cache
+RUN bundle install
 
 # Copy your Google Sheets script into the image
 COPY _build/google_service_account.rb /srv/jekyll/_build/
