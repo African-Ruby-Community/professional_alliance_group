@@ -7,6 +7,8 @@ image: "/images/logo/arc_logo_coloured.png"
 year: 2025
 ---
 
+{% group = site.data.new_remote.about_the_group[0] %}
+
 <div class="preloader-new">
     <!-- Logo -->
     <div class="preloader-logo-new"></div>
@@ -64,7 +66,7 @@ year: 2025
                 <div class="inner-column">
                     <div class="sec-title">
                         <span class="title">ABOUT</span>
-                        <h2>Welcome to the Admanus Group</h2>
+                        <h2>Welcome to the {{ group['Group Name'] }}</h2>
                         <div class="text">
                             This year’s theme,
                             <strong>“Lorem Ipsum. Lorem Ipsum”</strong>,
