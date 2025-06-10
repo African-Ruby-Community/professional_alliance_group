@@ -19,5 +19,4 @@ bundle install
 
 # Start Jekyll with the specified options
 echo "Starting Jekyll server..."
-exec bundle exec jekyll serve --host 0.0.0.0 --port 8001 --livereload
-
+exec bundle exec jekyll serve --watch --livereload --host 0.0.0.0 --port 8001
