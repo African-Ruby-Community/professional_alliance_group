@@ -29,7 +29,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Bridging individual skills and knowledge to create a dynamic and effective collaborative network.
 
 # The subpath of your site, e.g. /blog
-baseurl: /professional_alliance_group
+#baseurl: /professional_alliance_group
 
 # The base hostname & protocol for your site, e.g. http://example.com
 url: "https://african-ruby-community.github.io"
