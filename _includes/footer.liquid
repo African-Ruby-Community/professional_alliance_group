@@ -65,10 +65,10 @@
                             <div class="footer-widget useful-links">
                                 <h2 class="widget-title">Quick Links</h2>
                                 <ul class="user-links">
-                                    <li><a href="/index">Home</a></li>
-                                    <li><a href="/about-us">About Us</a></li>
-                                    <li><a href="/members">Members</a></li>
-                                    <li><a href="/groups">Collaborations</a></li>
+                                    <li><a href="{{ '/index' | relative_url }}">Home</a></li>
+                                    <li><a href="{{ '/about-us' | relative_url }}">About Us</a></li>
+                                    <li><a href="{{ '/members' | relative_url }}">Members</a></li>
+                                    <li><a href="{{ '/groups' | relative_url }}">Collaborations</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                 <div class="copyright-text">
                     <p>
                         © Copyright {{ site.current_year }} All Rights Reserved by
-                        <a href="/index.html" target="_blank">
+                        <a href="{{ '/index.html' | relative_url }}" target="_blank">
                             Admanus Group</a
                         >
                     </p>
