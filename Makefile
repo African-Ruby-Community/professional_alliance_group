@@ -25,7 +25,7 @@ sync:
 
 # Serve the Jekyll site locally for development
 serve:
-	bundle exec jekyll serve --config $(CONFIGS) -d public
+	bundle exec jekyll serve --config $(CONFIGS) -d public --verbose
 
 # Complete development workflow: sync data, generate files, and serve
 dev: sync-and-generate serve
