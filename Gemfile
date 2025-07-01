@@ -10,6 +10,7 @@ gem 'jekyll-minifier'
 gem 'jekyll-assets'
 gem 'csv'
 gem "dotenv", "~> 3.1"
+gem 'jekyll-datapage-generator'
 
 # Google sheet gems
 gem 'googleauth', '~> 1.14'
