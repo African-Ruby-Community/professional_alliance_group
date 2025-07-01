@@ -1,1 +1,1 @@
-document.addEventListener("DOMContentLoaded",(function(){document.querySelector(".skeleton-loader").style.display="none"}));
+document.addEventListener("DOMContentLoaded",function(){document.querySelector(".skeleton-loader").style.display="none"});
