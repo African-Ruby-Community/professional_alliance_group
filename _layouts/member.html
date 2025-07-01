@@ -12,23 +12,44 @@ layout: application_member
                         <img src="{{ page['Image URL'] }}" alt="{{ page.title }}" />
                     </figure>
                     <ul class="social-icon-two social-icon-colored text-center">
-                        {% if page.twitter and page.twitter != "" %}
+
+                        <!-- Website 1 -->
+                        {% if page['Website 1'] and page['Website 1'] != "" %}
                         <li>
-                            <a href="{{ page.twitter }}" target="_blank"
-                            ><i class="fa-brands fa-x-twitter"></i
-                            ></a>
+                            {% assign link_url = page['Website 1'] %}
+                            <a href="{{ link_url }}">
+                                {% include link_icon_type.liquid link=link_url  %}
+                            </a>
                         </li>
-                        {% endif %} {% if page.linkedin and page.linkedin != "" %}
+                        {% endif %}
+
+                        <!-- Website 2 -->
+                        {% if page['Website 2'] and page['Website 2'] != "" %}
                         <li>
-                            <a href="{{page.linkedin}}" target="_blank"
-                            ><i class="fab fa-linkedin"></i
-                            ></a>
+                            {% assign link_url = page['Website 2'] %}
+                            <a href="{{ link_url }}">
+                                {% include link_icon_type.liquid link=link_url  %}
+                            </a>
                         </li>
-                        {% endif %} {% if page.website and page.website != "" %}
+                        {% endif %}
+
+                        <!-- Social Media Link 1 -->
+                        {% if page['Social Media Link 1'] and page['Social Media Link 1'] != "" %}
+                            <li>
+                                {% assign link_url = page['Social Media Link 1'] %}
+                                <a href="{{ link_url }}">
+                                    {% include link_icon_type.liquid link=link_url  %}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <!-- Social Media Link 2 -->
+                        {% if page['Social Media Link 2'] and page['Social Media Link 2'] != "" %}
                         <li>
-                            <a href="{{page.website}}" target="_blank"
-                            ><i class="fab fa-sistrix"></i
-                            ></a>
+                            {% assign link_url = page['Social Media Link 2'] %}
+                            <a href="{{ link_url }}">
+                                {% include link_icon_type.liquid link=link_url  %}
+                            </a>
                         </li>
                         {% endif %}
                     </ul>
