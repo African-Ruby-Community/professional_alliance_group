@@ -2,94 +2,96 @@
 layout: application_member
 ---
 
-<!-- Speaker Detail -->
+<!-- Member Detail -->
 <section class="speaker-detail">
-  <div class="auto-container">
-    <div class="row">
-      <div class="image-column col-lg-4 col-md-12 col-sm-12">
-        <div class="image-box">
-          <figure class="image">
-            <img src="{{ page.image }}" alt="page.name " />
-          </figure>
-          <ul class="social-icon-two social-icon-colored text-center">
-            {% if page.twitter and page.twitter != "" %}
-            <li>
-              <a href="{{ page.twitter }}" target="_blank"
-                ><i class="fa-brands fa-x-twitter"></i
-              ></a>
-            </li>
-            {% endif %} {% if page.linkedin and page.linkedin != "" %}
-            <li>
-              <a href="{{page.linkedin}}" target="_blank"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-            </li>
-            {% endif %} {% if page.website and page.website != "" %}
-            <li>
-              <a href="{{page.website}}" target="_blank"
-                ><i class="fab fa-sistrix"></i
-              ></a>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-
-      <div class="info-column col-lg-8 col-md-12 col-sm-12">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h3 class="card-title text-info-emphasis">{{ page.name }}</h3>
-            <h5 class="text-secondary font-weight-bold">{{ page.bio }}</h5>
-            <p class="card-text text-black">{{ page.details }}</p>
-            <h4 class="mt-4 text-info-emphasis">{{ page.name }}'s Collaboration Groups</h4>
-            <div class="row">
-              {% if page.groups and page.groups.size > 0 %}
-                {% for group_permalink in page.groups %}
-                  {% assign group = site.data.new_remote.groups | where: "permalink", group_permalink | first %}
-                  {% if group %}
-                  <div class="col-lg-6 col-md-6 mb-3">
-                    <div class="border p-3 bg-white rounded shadow-sm">
-                      <h5 class="text-danger-emphasis font-weight-bold">
-                        <a href="{{ group.permalink }}" class="text-dark">{{ group.name }}</a>
-                      </h5>
-                      <p class="text-muted">{{ group.bio }}</p>
-                    </div>
-                  </div>
-                  {% endif %}
-                {% endfor %}
-              {% else %}
-                <div class="col-12">
-                  <p class="text-muted">No collaboration groups found.</p>
+    <div class="auto-container">
+        <div class="row">
+            <div class="image-column col-lg-4 col-md-12 col-sm-12">
+                <div class="image-box">
+                    <figure class="image">
+                        <img src="{{ page.image }}" alt=" page.title " />
+                    </figure>
+                    <ul class="social-icon-two social-icon-colored text-center">
+                        {% if page.twitter and page.twitter != "" %}
+                        <li>
+                            <a href="{{ page.twitter }}" target="_blank"
+                            ><i class="fa-brands fa-x-twitter"></i
+                            ></a>
+                        </li>
+                        {% endif %} {% if page.linkedin and page.linkedin != "" %}
+                        <li>
+                            <a href="{{page.linkedin}}" target="_blank"
+                            ><i class="fab fa-linkedin"></i
+                            ></a>
+                        </li>
+                        {% endif %} {% if page.website and page.website != "" %}
+                        <li>
+                            <a href="{{page.website}}" target="_blank"
+                            ><i class="fab fa-sistrix"></i
+                            ></a>
+                        </li>
+                        {% endif %}
+                    </ul>
                 </div>
-              {% endif %}
             </div>
 
-            <h4 class="mt-4 text-info-emphasis">{{ page.name }}'s Projects</h4>
-            <div class="row">
-              {% if page.projects and page.projects.size > 0 %}
-                {% for project_permalink in page.projects %}
-                  {% assign project = site.data.new_remote.projects | where: "permalink", project_permalink | first %}
-                  {% if project %}
-                  <div class="col-lg-6 col-md-6 mb-3">
-                    <div class="border p-3 bg-white rounded shadow-sm">
-                      <h5 class="text-info-emphasis font-weight-bold">
-                        <a href="{{ project.permalink }}" class="text-dark">{{ project.name }}</a>
-                      </h5>
-                      <p class="text-muted">{{ project.bio }}</p>
+            <div class="info-column col-lg-8 col-md-12 col-sm-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title text-info-emphasis">{{ page.title }}</h3>
+                        <h5 class="text-secondary font-weight-bold">{{ page.bio }}</h5>
+                        <p class="fs-6 fs-md-6 fs-lg-6 fs-xl-6 fs-xxl-6 text-black">
+                            {{ page.details }}
+                        </p>
+
+                        {% if page.talk_title %}
+                        <h4 class="mt-4 text-info-emphasis">Talks by {{ page.title }}</h4>
+                        <div class="row">
+                            {% if page.session_day and page.session_time %} {% assign days =
+                            page.session_day | split: ',' %} {% assign times =
+                            page.session_time | split: ',' %} {% for i in (0..days.size) %} {%
+                            assign day = days[i] | strip %} {% assign time = times[i] | strip
+                            %} {% if day and time %}
+                            <div class="col-lg-6 col-md-6 mb-3">
+                                <div class="border p-3 bg-white rounded shadow-sm">
+                                    <h5 class="text-danger-emphasis font-weight-bold">
+                                        Day {{ day }}
+                                    </h5>
+                                    <span class="d-block text-muted">{{ time }}</span>
+                                    <p class="mt-2 font-weight-bold text-info-emphasis">
+                                        {{ page.talk_title }}
+                                    </p>
+                                    {% if page.talk_description != "TBA" %}
+                                    <div
+                                            class="text-info-emphasis fs-6 fs-md-6 fs-lg-6 fs-xl-6 fs-xxl-6"
+                                    >
+                                        {{ page.talk_description }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endif %} {% endfor %} {% else %}
+                            <div class="col-lg-6 col-md-6 mb-3">
+                                <div class="border p-3 bg-white rounded shadow-sm">
+                                    <p class="mt-2 font-weight-bold text-info-emphasis">
+                                        {{ page.talk_title }}
+                                    </p>
+                                    {% if page.talk_description != "TBA" %}
+                                    <div
+                                            class="text-info-emphasis fs-6 fs-md-6 fs-lg-6 fs-xl-6 fs-xxl-6"
+                                    >
+                                        {{ page.talk_description }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
                     </div>
-                  </div>
-                  {% endif %}
-                {% endfor %}
-              {% else %}
-                <div class="col-12">
-                  <p class="text-muted">No projects found.</p>
                 </div>
-              {% endif %}
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
-<!--End Speaker Detail -->
+<!--End Member Detail -->
