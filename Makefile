@@ -21,25 +21,7 @@ setup:
 
 # Sync data from Google Sheets
 sync:
-	bundle exec ruby _build/sync_google_sheets.rb
-
-# Generate member files
-generate-members:
-	bundle exec ruby _build/generate_member_files.rb
-
-# Generate group files
-generate-groups:
-	bundle exec ruby _build/generate_group_files.rb
-
-# Generate project files
-generate-projects:
-	bundle exec ruby _build/generate_project_files.rb
-
-# Generate all files (members, groups, and projects)
-generate: generate-members generate-groups generate-projects
-
-# Sync data and generate all files
-sync-and-generate: sync generate
+	bundle exec ruby _build/google_service_account.rb
 
 # Serve the Jekyll site locally for development
 serve:
