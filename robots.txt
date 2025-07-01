@@ -1,1 +1,1 @@
-Sitemap: https://african-ruby-community.github.io/sitemap.xml
+Sitemap: https://african-ruby-community.github.io/professional_alliance_group/sitemap.xml
