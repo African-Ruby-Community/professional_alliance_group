@@ -50,7 +50,7 @@ dev: sync-and-generate serve
 
 # Build the site for deployment with optimizations
 build:
-	JEKYLL_ENV=production bundle exec jekyll build -d public
+	JEKYLL_ENV=production bundle exec jekyll build -d public --trace
 	@echo "Running PurgeCSS to remove unused CSS..."
 	@if command -v purgecss >/dev/null 2>&1; then \
 		purgecss -c purgecss.config.js; \
