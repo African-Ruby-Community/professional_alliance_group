@@ -8424,10 +8424,7 @@ media .page-title .bread-crumb li a:hover {
 }
 
 .logo {
-  padding-top: clamp(4px, 4vw, 8px); /* More padding at smaller viewports */
-  padding-right: clamp(4px, 4vw, 8px);
-  padding-bottom: clamp(4px, 2vw, 7px);
-  padding-left: clamp(2px, 2vw, 5px);
-  width: clamp(200px, 25vw, 300px);
-  height: auto;
+    padding: clamp(2px, 2vw, 5x);
+    width: clamp(150px, 20vw, 180px);
+    height: auto;
 }
