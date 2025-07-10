@@ -29,10 +29,10 @@ description: >- # this means to ignore newlines until "baseurl:"
   Bridging individual skills and knowledge to create a dynamic and effective collaborative network.
 
 # The subpath of your site, e.g. /blog
-#baseurl: /professional_alliance_group
+baseurl: ""
 
 # The base hostname & protocol for your site, e.g. http://example.com
-url: "https://african-ruby-community.github.io"
+url: "https://admanusgroup.com/"
 
 # Your GitLab username
 gitlab_username: nairuby
@@ -49,6 +49,7 @@ markdown: kramdown
 # Plugins to use with Jekyll
 plugins:
   - jekyll-sitemap
+  - jekyll-datapage-generator
 #  - jekyll-minifier
   - jekyll-assets
   - jekyll-terser
@@ -70,6 +71,17 @@ assets:
   sources:
     - _assets/javascripts
     - _assets/stylesheets
+
+page_gen:
+  - data: "new_remote.members"
+    template: "member"
+    name: "Full Name"
+    dir: "members"
+    extension: "html"
+    index_files: false
+    title: "Full Name"
+    slugify: true
+    raw: false
 
 # Collections of content
 collections:

@@ -60,6 +60,10 @@ SHEETS.each do |sheet|
 
     next if gdrive_file_id.nil? # Skip if id is nil
     item['Image URL'] = "https://lh3.googleusercontent.com/d/#{gdrive_file_id}=w1000?authuser=1/view"
+
+    unless item['Full Name'].empty?
+      item['permalink'] = item['Full Name']&.downcase&.squeeze&.split&.join('-') + '.html'
+    end
   end
 
   # Save data to a json data file

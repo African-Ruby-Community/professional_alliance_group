@@ -47,18 +47,23 @@
                             id="navbarSupportedContent"
                     >
                         <ul class="navigation clearfix">
-                            <li style="display: none"><a href="/index">Home</a></li>
-                            <li {% if page.url == "/about-us" %}class="current" {% endif %}><a
-                                        href="/about-us">About</a>
+                            <li style="display: none">
+                                <a href="{{ '/index.html' | relative_url }}">Home</a>
                             </li>
-                            <li><a href="/members">Members</a></li>
-                            <li><a href="/groups">Groups</a></li>
 
+                            <li {% if page.url == '/about-us.html' %}class="current"{% endif %}>
+                                <a href="{{ '/about-us.html' | relative_url }}">About</a>
+                            </li>
 
-                            <li {% if page.url == "/contact" %}class="current" {% endif %}><a
-                                        href="/contact">Contact</a>
+                            <li>
+                                <a href="{{ '/members.html' | relative_url }}">Members</a>
+                            </li>
+
+                            <li>
+                                <a href="{{ '/groups.html' | relative_url }}">Collaborations</a>
                             </li>
                         </ul>
+
                     </div>
                 </nav>
                 <!-- Main Menu End-->
@@ -78,13 +83,13 @@
         <nav class="menu-box">
             <div class="nav-logo">
                 <a href="index.html"
-                ><img 
-                      class="theme-sensitive-logo"
-                      src="{{ '/images/logo/ag_logo_coloured.png' | prepend: site.baseurl }}"
-                      data-light-src="{{ '/images/logo/ag_logo_coloured.png' | prepend: site.baseurl }}"
-                      data-dark-src="{{ '/images/logo/aglogo.png' | prepend: site.baseurl }}"
-                      alt="Admanus Group Logo"
-                      title=""></a
+                ><img
+                            class="theme-sensitive-logo"
+                            src="{{ '/images/logo/ag_logo_coloured.png' | prepend: site.baseurl }}"
+                            data-light-src="{{ '/images/logo/ag_logo_coloured.png' | prepend: site.baseurl }}"
+                            data-dark-src="{{ '/images/logo/aglogo.png' | prepend: site.baseurl }}"
+                            alt="Admanus Group Logo"
+                            title=""></a
                 >
             </div>
 
