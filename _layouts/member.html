@@ -9,7 +9,7 @@ layout: application_member
             <div class="image-column col-lg-4 col-md-12 col-sm-12">
                 <div class="image-box">
                     <figure class="image">
-                        <img src="{{ page['Image URL'] }}" alt="{{ page.title }}" />
+                        <img src="{{ page['Image URL'] }}" alt="{{ page.title }}"/>
                     </figure>
                     <ul class="social-icon-two social-icon-colored text-center">
 
@@ -18,7 +18,7 @@ layout: application_member
                         <li>
                             {% assign link_url = page['Website 1'] %}
                             <a href="{{ link_url }}">
-                                {% include link_icon_type.liquid link=link_url  %}
+                                {% include link_icon_type.liquid link=link_url %}
                             </a>
                         </li>
                         {% endif %}
@@ -28,19 +28,19 @@ layout: application_member
                         <li>
                             {% assign link_url = page['Website 2'] %}
                             <a href="{{ link_url }}">
-                                {% include link_icon_type.liquid link=link_url  %}
+                                {% include link_icon_type.liquid link=link_url %}
                             </a>
                         </li>
                         {% endif %}
 
                         <!-- Social Media Link 1 -->
                         {% if page['Social Media Link 1'] and page['Social Media Link 1'] != "" %}
-                            <li>
-                                {% assign link_url = page['Social Media Link 1'] %}
-                                <a href="{{ link_url }}">
-                                    {% include link_icon_type.liquid link=link_url  %}
-                                </a>
-                            </li>
+                        <li>
+                            {% assign link_url = page['Social Media Link 1'] %}
+                            <a href="{{ link_url }}">
+                                {% include link_icon_type.liquid link=link_url %}
+                            </a>
+                        </li>
                         {% endif %}
 
                         <!-- Social Media Link 2 -->
@@ -48,7 +48,7 @@ layout: application_member
                         <li>
                             {% assign link_url = page['Social Media Link 2'] %}
                             <a href="{{ link_url }}">
-                                {% include link_icon_type.liquid link=link_url  %}
+                                {% include link_icon_type.liquid link=link_url %}
                             </a>
                         </li>
                         {% endif %}
@@ -62,7 +62,7 @@ layout: application_member
                         <h3 class="card-title text-info-emphasis">{{ page.title }}</h3>
                         <h5 class="text-secondary font-weight-bold">{{ page.Headline }}</h5>
                         <p class="fs-6 fs-md-6 fs-lg-6 fs-xl-6 fs-xxl-6 text-black">
-                            {{ page['Full Bio'] }}
+                            {{ page['Full Bio'] | newline_to_br }}
                         </p>
 
                         {% if page.talk_title %}

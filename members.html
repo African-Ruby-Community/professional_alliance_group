@@ -8,23 +8,24 @@ image: "/images/logo/ag_logo_coloured.png"
 
 <!-- Preloader -->
 <div class="preloader-new">
-  <!-- Logo -->
-  <div class="preloader-logo-new"></div>
+    <!-- Logo -->
+    <div class="preloader-logo-new"></div>
 
-  <!-- Animated Loading Text -->
-  <div class="loader-new"></div>
+    <!-- Animated Loading Text -->
+    <div class="loader-new"></div>
 </div>
 
 <!--Display Members-->
 <section class="speakers-section-two section-no-margin-top">
-  <div class="auto-container">
-    <div class="sec-title text-center my-4">
-      <span class="display-4 font-weight-bold title-color">Members</span>
+    <div class="auto-container">
+        <div class="sec-title text-center my-4">
+            <span class="display-4 font-weight-bold title-color">Members</span>
+        </div>
+        {% assign all_members = site.data.new_remote.members %}
+        <div class="row top-pd-mobile">
+            {% for member in all_members %}
+            {% include member_block.liquid member=member %}
+            {% endfor %}
+        </div>
     </div>
-    <div class="row top-pd-mobile">
-      {% for member in site.data.new_remote.members %}
-        {% include member_block.liquid member=member designation="Keynote Member" %}
-      {% endfor %}
-    </div>
-  </div>
 </section>
