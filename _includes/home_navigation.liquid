@@ -47,12 +47,10 @@
                             id="navbarSupportedContent"
                     >
                         <ul class="navigation clearfix">
-                            <li class="current"><a href="index.html">Home</a></li>
-                            <li><a href="members.html">Members</a></li>
-                            <li style="display: none"><a href="groups.html">Groups</a></li>
-                            <li style="display: none"><a href="schedule.html">Schedule</a></li>
-                            <li><a href="about-us.html">About</a></li>
-                            <li style="display: none"><a href="contact.html">Contact</a></li>
+                            <li class="current"><a href="{{ '/' | relative_url }}">Home</a></li>
+                            <li><a href="/about-us">About</a></li>
+                            <li><a href="{{ '/members' | relative_url }}">Members</a></li>
+                            <li><a href="{{ '/collaborations' | relative_url }}">Collaborations</a></li>
                         </ul>
                     </div>
                 </nav>
