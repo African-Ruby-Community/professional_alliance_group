@@ -51,15 +51,15 @@
                                 <a href="{{ '/' | relative_url }}">Home</a>
                             </li>
 
-                            <li {% if page.url == '/about-us.html' %}class="current"{% endif %}>
+                            <li {% if page.url == '/about-us' %} class="current"{% endif %}>
                                 <a href="{{ '/about-us' | relative_url }}">About</a>
                             </li>
 
-                            <li>
+                            <li {% if page.url == '/members' %} class="current"{% endif %}>
                                 <a href="{{ '/members' | relative_url }}">Members</a>
                             </li>
 
-                            <li>
+                            <li {% if page.url == '/collaborations' %} class="current"{% endif %}>
                                 <a href="{{ '/collaborations' | relative_url }}">Collaborations</a>
                             </li>
                         </ul>
