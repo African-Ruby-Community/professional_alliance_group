@@ -86,3 +86,12 @@ _data/new_remote/*
 
 # Ignore this file because it contains sensitive credentials
 service_acc.json
+
+# Ruby development files
+.rubocop-https---*
+.rubocop_todo.yml
+coverage/
+.byebug_history
+
+# Cursor IDE files
+.cursor/
