@@ -68,8 +68,9 @@ _site
 # Ignore Gemfile.lock to avoid contributors pushing different versions
 Gemfile.lock
 
-# Ignore ruby version files
+# Ignore ruby version files (except .ruby-version)
 .ruby-*
+!.ruby-version
 
 # This is where the artifacts will be created when building in production
 public
