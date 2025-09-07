@@ -27,7 +27,7 @@ Last Change:    11/3/2020
 18. Fluid Section One
 19. Speakers Section / Two / Three
 20. Speaker Detail
-21. schedule Section / Two / Three
+21. Schedule Section / Two / Three / Custom
 22. Event Detail
 23. Pricing Section / Two / Three
 24. Fun Fact Section
@@ -3667,6 +3667,7 @@ media .page-title .bread-crumb li a:hover {
 .custom-table tbody tr td:nth-child(2) {
   width: 60%;
 }
+
 .custom-table tbody tr td:nth-child(3) {
   width: 20%;
 }
@@ -4240,6 +4241,99 @@ media .page-title .bread-crumb li a:hover {
 
 .schedule-section.style-three .schedule-timeline {
   position: relative;
+}
+
+
+/***
+
+====================================================================
+	Schedule Section Custom Style
+====================================================================
+
+***/
+
+/* Custom styling for horizontal speaker layout */
+.speakers-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.speakers-container .speaker-info {
+  flex: 1;
+  min-width: 150px;
+  max-width: 150px;
+  position: relative;
+  padding: 15px;
+  /* background: #f8f9fa; */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.speakers-container .speaker-info:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.speakers-container .speaker-info .thumb {
+  position: relative;
+  left: auto;
+  right: auto;
+  top: auto;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 10px;
+  display: block;
+}
+
+.speakers-container .speaker-info .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.speakers-container .speaker-info .name {
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  color: #212639;
+  font-weight: 600;
+}
+
+.speakers-container .speaker-info .designation {
+  text-align: center;
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .speakers-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .speakers-container .speaker-info {
+    max-width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .speakers-container .speaker-info {
+    padding: 10px;
+  }
+
+  .speakers-container .speaker-info .thumb {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 /***
