@@ -6,8 +6,15 @@
             <div class="speakers-container">
                 {% for member in include.collaboration['collaborators'] %}
                     <div class="speaker-info">
-                        <figure class="thumb"><img src="images/resource/thumb-1.jpg" alt=""></figure>
-                        <h5 class="name">{{ member['Full Name'] }}</h5>
+                        <figure class="thumb">
+                            <a href="{{ member.permalink }}" target="_blank">
+                                <img src="{{ member['Image URL'] }}" alt="{{ member['Full Name'] }}"/>
+                            </a>
+                        </figure>
+
+                        <a href="{{ member.permalink }}" target="_blank">
+                            <h5 class="name">{{ member['Full Name'] }}</h5>
+                        </a>
                 </div>
                 {% endfor %}
             </div>
