@@ -1,0 +1,50 @@
+{
+  "Jekyll Liquid Variable": {
+    "prefix": "jvar",
+    "body": [
+      "{{ ${1:variable} }}"
+    ],
+    "description": "Jekyll Liquid variable"
+  },
+  "Jekyll Liquid Filter": {
+    "prefix": "jfilter",
+    "body": [
+      "{{ ${1:variable} | ${2:filter} }}"
+    ],
+    "description": "Jekyll Liquid variable with filter"
+  },
+  "Jekyll Liquid For Loop": {
+    "prefix": "jfor",
+    "body": [
+      "{% for ${1:item} in ${2:collection} %}",
+      "  ${3:content}",
+      "{% endfor %}"
+    ],
+    "description": "Jekyll Liquid for loop"
+  },
+  "Jekyll Liquid If Statement": {
+    "prefix": "jif",
+    "body": [
+      "{% if ${1:condition} %}",
+      "  ${2:content}",
+      "{% endif %}"
+    ],
+    "description": "Jekyll Liquid if statement"
+  },
+  "Jekyll Liquid Include": {
+    "prefix": "jinclude",
+    "body": [
+      "{% include ${1:file} %}"
+    ],
+    "description": "Jekyll Liquid include"
+  },
+  "Jekyll Liquid Layout": {
+    "prefix": "jlayout",
+    "body": [
+      "---",
+      "layout: ${1:layout}",
+      "---"
+    ],
+    "description": "Jekyll front matter with layout"
+  }
+}
