@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "castwide.ruby-lsp",
+    "misogi.ruby-rubocop",
+    "samuelcolvin.jekyll",
+    "aliariff.erb-formatter-beautify",
+    "ms-vscode.vscode-json",
+    "redhat.vscode-yaml",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode"
+  ]
+}
