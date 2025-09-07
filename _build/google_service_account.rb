@@ -50,6 +50,21 @@ SHEETS.each do |sheet|
   headers = values.first
   data = values[1..-1].map { |row| headers.zip(row).to_h }
 
+  # Preload members index if this sheet requires collaborator resolution
+  members_by_number = nil
+  if sheet.to_s.downcase == 'collaborators' || sheet.to_s.downcase == 'collaborations'
+    members_path = File.join(DATA_FOLDER, 'members.json')
+    if File.exist?(members_path)
+      begin
+        members_data = JSON.parse(File.read(members_path))
+        members_by_number = members_data.each_with_object({}) do |member, index|
+          index[member['Member Number']] = member
+        end
+      rescue StandardError => e
+        warn "Failed to load members.json for collaborator mapping: #{e.message}"
+      end
+    end
+  end
 
   data.each do |item|
     # Process Google Drive image URL if present
@@ -68,6 +83,12 @@ SHEETS.each do |sheet|
     # Generate permalink for members if Full Name present
     if item['Full Name'] && !item['Full Name'].to_s.empty?
       item['permalink'] = item['Full Name']&.downcase&.squeeze&.split&.join('-') + '.html'
+    end
+
+    # Map collaborators codes to member objects for collaborations sheet
+    if members_by_number && item['Collaborators'] && !item['Collaborators'].to_s.strip.empty?
+      codes = item['Collaborators'].split(',').map { |c| c.strip }
+      item['collaborators'] = codes.map { |code| members_by_number[code] }.compact
     end
   end
 
