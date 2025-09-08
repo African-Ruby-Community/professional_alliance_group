@@ -80,9 +80,10 @@ SHEETS.each do |sheet|
       end
     end
 
-    # Generate permalink for members if Full Name present
+    # Generate permalink for members if Full Name present (directory-style, no .html)
     if item['Full Name'] && !item['Full Name'].to_s.empty?
-      item['permalink'] = item['Full Name']&.downcase&.squeeze&.split&.join('-') + '.html'
+      slug = item['Full Name']&.downcase&.squeeze&.split&.join('-')
+      item['permalink'] = "/members/#{slug}/"
     end
 
     # Map collaborators codes to member objects for collaborations sheet

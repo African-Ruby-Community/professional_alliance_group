@@ -95,7 +95,7 @@ page_gen:
 collections:
   members:
     output: true
-    permalink: /members/:name/
+    permalink: /members/:name
   groups:
     output: true
     permalink: /groups/:name/
