@@ -60,6 +60,7 @@ Last Change:    11/3/2020
 51. Social icon Colored
 52. Right to Left
 53. Boxed Layout
+54. Custom
 -------------------------------------------*/
 
 /***
@@ -8521,4 +8522,20 @@ media .page-title .bread-crumb li a:hover {
     padding: clamp(2px, 2vw, 5x);
     width: clamp(150px, 20vw, 180px);
     height: auto;
+}
+
+
+/***
+
+====================================================================
+		Custom Section
+====================================================================
+
+***/
+
+/* Cap all text within collaboration page to a maximum of 16px */
+.collaboration-std-font,
+.collaboration-std-font * {
+  font-size: 16px !important;
+  line-height: 1.6;
 }
