@@ -19,12 +19,16 @@
                 {% endfor %}
             </div>
 
-            <h4><a href="{{ include.collaboration['Name'] }}">{{ include.collaboration['Name'] }}</a></h4>
+            <h4>
+                <a href="{{ include.collaboration['permalink'] | default: include.collaboration['Name'] | slugify | prepend: '/collaborations/' | append: '.html' }}">
+                    {{ include.collaboration['Name'] }}
+                </a>
+            </h4>
 
             <div class="text">{{ include.collaboration['Short Decription'] }}</div>
 
             <div class="btn-box">
-                <a href="{{ include.collaboration['Name'] }}" class="theme-btn">Read More</a>
+                <a href="{{ include.collaboration['permalink'] | default: include.collaboration['Name'] | slugify | prepend: '/collaborations/' | append: '.html' }}" class="theme-btn">Read More</a>
             </div>
         </div>
     </div>
