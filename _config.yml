@@ -81,15 +81,6 @@ page_gen:
     index_files: false
     title: "Full Name"
     slugify: true
-  - data: "new_remote.collaborations"
-    template: "collaboration"
-    name: "Name"
-    dir: "collaborations"
-    extension: "html"
-    index_files: false
-    title: "Name"
-    slugify: true
-    raw: false
 
 # Collections of content
 collections:
