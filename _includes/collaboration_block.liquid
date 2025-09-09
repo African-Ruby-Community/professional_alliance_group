@@ -20,7 +20,11 @@
             </div>
 
             <h4>
-                <a href="{{ include.collaboration['permalink'] | default: include.collaboration['Name'] | slugify | prepend: '/collaborations/' | append: '.html' }}">
+                <a href="#" class="collaboration-link" 
+                   data-name="{{ include.collaboration['Name'] | escape }}" 
+                   data-short-desc="{{ include.collaboration['Short Decription'] | escape }}" 
+                   data-long-desc="{{ include.collaboration['Long Decription'] | escape }}"
+                   data-collaborators="{{ include.collaboration['collaborators'] | jsonify | escape }}">
                     {{ include.collaboration['Name'] }}
                 </a>
             </h4>
@@ -28,7 +32,11 @@
             <div class="text">{{ include.collaboration['Short Decription'] }}</div>
 
             <div class="btn-box">
-                <a href="{{ include.collaboration['permalink'] | default: include.collaboration['Name'] | slugify | prepend: '/collaborations/' | append: '.html' }}" class="theme-btn">Read More</a>
+                <a href="#" class="theme-btn collaboration-link" 
+                   data-name="{{ include.collaboration['Name'] | escape }}" 
+                   data-short-desc="{{ include.collaboration['Short Decription'] | escape }}" 
+                   data-long-desc="{{ include.collaboration['Long Decription'] | escape }}"
+                   data-collaborators="{{ include.collaboration['collaborators'] | jsonify | escape }}">Read More</a>
             </div>
         </div>
     </div>
