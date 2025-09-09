@@ -3,7 +3,7 @@ require:
   - rubocop-jekyll
 
 AllCops:
-  TargetRubyVersion: 3.4
+  TargetRubyVersion: 3.4.4
   NewCops: enable
   Exclude:
     - 'vendor/**/*'
