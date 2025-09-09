@@ -14,8 +14,8 @@ AllCops:
     - 'vendor/bundle/**/*'
 
 # Jekyll specific rules
-Jekyll/UnescapedFrontMatter:
-  Enabled: true
+# Jekyll/UnescapedFrontMatter:
+#   Enabled: true
 
 # Style rules
 Style/StringLiterals:
