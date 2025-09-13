@@ -54,6 +54,19 @@ clean: confirm
 	rm -rf vendor _site
 	rm -rf _data/new_remote/*.yml
 
+## lint: Run RuboCop linter
+lint:
+	bundle exec rubocop
+
+## lint-fix: Run RuboCop with auto-fix
+lint-fix:
+	bundle exec rubocop -A
+
+## dev: Run development tasks (lint + build)
+dev: lint
+	@echo "Running Jekyll build..."
+	@$(MAKE) build
+
 # Setup the project: install dependencies, clean generated files, sync data, and generate files
 setup-project:
 	@echo "Setting up the project..."

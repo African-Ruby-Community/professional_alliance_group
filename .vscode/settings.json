@@ -1,0 +1,38 @@
+{
+    "ruby.lsp.enabled": true,
+    "ruby.lsp.bundleGemfile": "Gemfile",
+    "ruby.lsp.featuresConfiguration": {
+        "inlayHint": true,
+        "codeActions": true,
+        "diagnostics": true,
+        "documentHighlights": true,
+        "documentLink": true,
+        "documentSymbols": true,
+        "foldingRanges": true,
+        "hover": true,
+        "selectionRanges": true,
+        "semanticHighlighting": true,
+        "completion": true,
+        "codeLens": true,
+        "definition": true,
+        "typeHierarchy": true,
+        "workspaceSymbol": true,
+        "signatureHelp": true,
+        "onTypeFormatting": true
+    },
+    "ruby.rubocop.onSave": true,
+    "ruby.rubocop.useBundler": true,
+    "ruby.format": "rubocop",
+    "ruby.intellisense": "rubyLsp",
+    "files.associations": {
+        "*.liquid": "liquid"
+    },
+    "emmet.includeLanguages": {
+        "liquid": "html"
+    },
+    "liquid.format.enable": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.rubocop": "explicit"
+    }
+}

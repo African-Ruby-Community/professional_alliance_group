@@ -1,0 +1,32 @@
+---
+layout: application_group
+---
+<section class="speaker-detail">
+    <div class="auto-container">
+        {% if page.collaborators and page.collaborators.size > 0 %}
+        <div class="speakers-container">
+            {% for member in page.collaborators %}
+            <div class="speaker-info">
+                <figure class="thumb">
+                    <a href="{{ member.permalink }}" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ member['Image URL'] }}" alt="{{ member['Full Name'] }}" />
+                    </a>
+                </figure>
+                <a href="{{ member.permalink }}" target="_blank" rel="noopener noreferrer">
+                    <h5 class="name">{{ member['Full Name'] }}</h5>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <ul class="upper-info collaboration-std-font">
+            <li><span class="icon far fa-clock"></span> {{ page['Date'] }}</li>
+        </ul>
+
+        <h4>{{ page['Name'] }}</h4>
+        <div class="collaboration-std-font">
+            {{ page['Long Decription'] | markdownify }}
+        </div>
+    </div>
+</section>

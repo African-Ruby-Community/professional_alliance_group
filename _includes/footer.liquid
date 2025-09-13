@@ -64,9 +64,9 @@
                                 <h2 class="widget-title">Quick Links</h2>
                                 <ul class="user-links">
                                     <li><a href="{{ '/index' | relative_url }}">Home</a></li>
-                                    <li><a href="{{ '/about-us' | relative_url }}">About Us</a></li>
+                                    <li><a href="{{ '/about-us' | relative_url }}">About</a></li>
                                     <li><a href="{{ '/members' | relative_url }}">Members</a></li>
-                                    <li><a href="{{ '/groups' | relative_url }}">Collaborations</a></li>
+                                    <li><a href="{{ '/collaborations' | relative_url }}">Collaborations</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -87,8 +87,9 @@
                                         <li>
                                             <span class="icon flaticon-paper-plane"></span>
                                             <div class="text">
-                                                <a href="mailto:admin@admanus.com"
-                                                >info@admanusgroup.org</a>
+                                                <a href="mailto:{{ group['Email Address'] }}">
+                                                    {{ group['Email Address'] }}
+                                                </a>
                                             </div>
                                         </li>
                                     </ul>

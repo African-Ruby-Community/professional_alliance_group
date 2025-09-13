@@ -47,20 +47,20 @@
                             id="navbarSupportedContent"
                     >
                         <ul class="navigation clearfix">
-                            <li style="display: none">
-                                <a href="{{ '/index.html' | relative_url }}">Home</a>
-                            </li>
-
-                            <li {% if page.url == '/about-us.html' %}class="current"{% endif %}>
-                                <a href="{{ '/about-us.html' | relative_url }}">About</a>
-                            </li>
-
                             <li>
-                                <a href="{{ '/members.html' | relative_url }}">Members</a>
+                                <a href="{{ '/' | relative_url }}">Home</a>
                             </li>
 
-                            <li>
-                                <a href="{{ '/groups.html' | relative_url }}">Collaborations</a>
+                            <li {% if page.url == '/about-us' %} class="current"{% endif %}>
+                                <a href="{{ '/about-us' | relative_url }}">About</a>
+                            </li>
+
+                            <li {% if page.url == '/members' %} class="current"{% endif %}>
+                                <a href="{{ '/members' | relative_url }}">Members</a>
+                            </li>
+
+                            <li {% if page.url == '/collaborations' %} class="current"{% endif %}>
+                                <a href="{{ '/collaborations' | relative_url }}">Collaborations</a>
                             </li>
                         </ul>
 

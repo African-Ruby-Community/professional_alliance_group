@@ -1,0 +1,155 @@
+---
+layout: application
+permalink: /collaborations
+title: "Professional Alliance Collaboration Groups"
+description: "Explore our diverse collaboration groups and connect with professionals in your field."
+image: "/images/logo/arc_logo_coloured_groups.png" # Consider a different image for groups
+---
+
+<div class="preloader-new">
+    <div class="preloader-logo-new"></div>
+
+    <div class="loader-new"></div>
+</div>
+
+<!-- schedule Section -->
+
+<section class="schedule-section">
+
+    <div class="anim-icons">
+
+        <span class="icon icon-circle-4 wow zoomIn"></span>
+
+        <span class="icon icon-circle-3 wow zoomIn"></span>
+
+    </div>
+
+    <div class="auto-container">
+
+        <div class="sec-title text-center">
+            <span class="title">Collaborations</span>
+        </div>
+        <div class="schedule-tabs tabs-box">
+            <div class="tabs-content">
+                <div class="tab active-tab" id="tab-1">
+                    <div class="schedule-timeline">
+                        {% for collaboration in site.data.new_remote.collaborations %}
+                        {% include collaboration_block.liquid collaboration=collaboration %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Collaboration Modal -->
+<div id="collaborationModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeCollaborationModal()">&times;</span>
+        <div class="modal-header">
+            <h2 id="modalTitle"></h2>
+        </div>
+        <div class="modal-body">
+            <!-- <div id="modalShortDescription" class="short-desc"></div> -->
+            <div id="modalCollaborators" class="collaborators-section"></div>
+            <div id="modalLongDescription" class="long-desc collaboration-std-font"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openCollaborationModal(name, shortDesc, longDesc, collaborators) {
+        document.getElementById('modalTitle').textContent = name;
+        // document.getElementById('modalShortDescription').textContent = shortDesc;
+
+        // Render collaborators
+        const collaboratorsSection = document.getElementById('modalCollaborators');
+        if (collaborators && collaborators.length > 0) {
+            let collaboratorsHtml = '<h3>Collaborators</h3><div class="collaborators-grid">';
+            collaborators.forEach(function (member) {
+                collaboratorsHtml += `
+                <div class="collaborator-card">
+                    <img src="${member['Image URL'] || 'images/resource/thumb-1.jpg'}" alt="${member['Full Name']}">
+                    <h5>${member['Full Name']}</h5>
+                </div>
+            `;
+            });
+            collaboratorsHtml += '</div>';
+            collaboratorsSection.innerHTML = collaboratorsHtml;
+        } else {
+            collaboratorsSection.innerHTML = '';
+        }
+
+        // Render long description with markdown-like formatting
+        const longDescElement = document.getElementById('modalLongDescription');
+        if (longDesc) {
+            // Simple markdown-like processing
+            let processedDesc = longDesc
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+
+            if (!processedDesc.startsWith('<p>')) {
+                processedDesc = '<p>' + processedDesc + '</p>';
+            }
+
+            longDescElement.innerHTML = processedDesc;
+        } else {
+            longDescElement.innerHTML = '';
+        }
+
+        document.getElementById('collaborationModal').style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeCollaborationModal() {
+        document.getElementById('collaborationModal').style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function (event) {
+        const modal = document.getElementById('collaborationModal');
+        if (event.target === modal) {
+            closeCollaborationModal();
+        }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            closeCollaborationModal();
+        }
+    });
+
+    // Event delegation for collaboration links
+    document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('collaboration-link')) {
+                event.preventDefault();
+
+                const name = event.target.getAttribute('data-name');
+                const shortDesc = event.target.getAttribute('data-short-desc');
+                const longDesc = event.target.getAttribute('data-long-desc');
+                const collaboratorsData = event.target.getAttribute('data-collaborators');
+
+                console.log('Clicked collaboration link:', name); // Debug log
+
+                let collaborators = [];
+                if (collaboratorsData && collaboratorsData !== 'null') {
+                    try {
+                        collaborators = JSON.parse(collaboratorsData);
+                    } catch (e) {
+                        console.error('Error parsing collaborators data:', e);
+                        collaborators = [];
+                    }
+                }
+
+                openCollaborationModal(name, shortDesc, longDesc, collaborators);
+            }
+        });
+    });
+</script>

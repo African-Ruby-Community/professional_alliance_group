@@ -50,19 +50,46 @@ SHEETS.each do |sheet|
   headers = values.first
   data = values[1..-1].map { |row| headers.zip(row).to_h }
 
+  # Preload members index if this sheet requires collaborator resolution
+  members_by_number = nil
+  if sheet.to_s.downcase == 'collaborators' || sheet.to_s.downcase == 'collaborations'
+    members_path = File.join(DATA_FOLDER, 'members.json')
+    if File.exist?(members_path)
+      begin
+        members_data = JSON.parse(File.read(members_path))
+        members_by_number = members_data.each_with_object({}) do |member, index|
+          index[member['Member Number']] = member
+        end
+      rescue StandardError => e
+        warn "Failed to load members.json for collaborator mapping: #{e.message}"
+      end
+    end
+  end
+
   data.each do |item|
-    next if item['Image URL'].nil? # Skip if there is no image url
-    gdrive_link = item['Image URL']
-    extract = gdrive_link.scan(/https:\/\/drive.google.com\/file\/d\/(.*)\/view/)
+    # Process Google Drive image URL if present
+    if item['Image URL'] && !item['Image URL'].to_s.strip.empty?
+      gdrive_link = item['Image URL']
+      extract = gdrive_link.scan(/https:\/\/drive.google.com\/file\/d\/(.*)\/view/)
 
-    next unless extract.count > 0 # Skip if Grive link format is not correct
-    gdrive_file_id = extract&.first&.first
+      if extract.count > 0
+        gdrive_file_id = extract&.first&.first
+        if gdrive_file_id
+          item['Image URL'] = "https://lh3.googleusercontent.com/d/#{gdrive_file_id}=w1000?authuser=1/view"
+        end
+      end
+    end
 
-    next if gdrive_file_id.nil? # Skip if id is nil
-    item['Image URL'] = "https://lh3.googleusercontent.com/d/#{gdrive_file_id}=w1000?authuser=1/view"
+    # Generate permalink for members if Full Name present (directory-style, no .html)
+    if item['Full Name'] && !item['Full Name'].to_s.empty?
+      slug = item['Full Name']&.downcase&.squeeze&.split&.join('-')
+      item['permalink'] = "/members/#{slug}/"
+    end
 
-    unless item['Full Name'].empty?
-      item['permalink'] = item['Full Name']&.downcase&.squeeze&.split&.join('-') + '.html'
+    # Map collaborators codes to member objects for collaborations sheet
+    if members_by_number && item['Collaborators'] && !item['Collaborators'].to_s.strip.empty?
+      codes = item['Collaborators'].split(',').map { |c| c.strip }
+      item['collaborators'] = codes.map { |code| members_by_number[code] }.compact
     end
   end
 

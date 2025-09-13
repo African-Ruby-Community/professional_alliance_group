@@ -1,0 +1,19 @@
+{
+    "ruby.lsp.enabled": true,
+    "ruby.lsp.bundleGemfile": "Gemfile",
+    "ruby.rubocop.onSave": true,
+    "ruby.rubocop.useBundler": true,
+    "ruby.format": "rubocop",
+    "ruby.intellisense": "rubyLsp",
+    "files.associations": {
+        "*.liquid": "liquid"
+    },
+    "emmet.includeLanguages": {
+        "liquid": "html"
+    },
+    "liquid.format.enable": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.rubocop": "explicit"
+    }
+}

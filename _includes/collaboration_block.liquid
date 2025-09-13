@@ -1,0 +1,43 @@
+<div class="schedule-block">
+    <div class="inner-box">
+        <div class="inner">
+            <div class="date">March 2025</div>
+
+            <div class="speakers-container">
+                {% for member in include.collaboration['collaborators'] %}
+                    <div class="speaker-info">
+                        <figure class="thumb">
+                            <a href="{{ member.permalink }}" target="_blank">
+                                <img src="{{ member['Image URL'] }}" alt="{{ member['Full Name'] }}"/>
+                            </a>
+                        </figure>
+
+                        <a href="{{ member.permalink }}" target="_blank">
+                            <h5 class="name">{{ member['Full Name'] }}</h5>
+                        </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <h4>
+                <a href="#" class="collaboration-link" 
+                   data-name="{{ include.collaboration['Name'] | escape }}" 
+                   data-short-desc="{{ include.collaboration['Short Decription'] | escape }}" 
+                   data-long-desc="{{ include.collaboration['Long Decription'] | escape }}"
+                   data-collaborators="{{ include.collaboration['collaborators'] | jsonify | escape }}">
+                    {{ include.collaboration['Name'] }}
+                </a>
+            </h4>
+
+            <div class="text">{{ include.collaboration['Short Decription'] }}</div>
+
+            <div class="btn-box">
+                <a href="#" class="theme-btn collaboration-link" 
+                   data-name="{{ include.collaboration['Name'] | escape }}" 
+                   data-short-desc="{{ include.collaboration['Short Decription'] | escape }}" 
+                   data-long-desc="{{ include.collaboration['Long Decription'] | escape }}"
+                   data-collaborators="{{ include.collaboration['collaborators'] | jsonify | escape }}">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
