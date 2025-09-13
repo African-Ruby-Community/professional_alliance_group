@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rakefile for development tasks
 require 'bundler/setup'
 
@@ -22,9 +24,9 @@ task :serve do
 end
 
 desc 'Run all linting tasks'
-task :lint => [:rubocop]
+task lint: [:rubocop]
 
 desc 'Run all development tasks'
-task :dev => [:rubocop, :build]
+task dev: %i[rubocop build]
 
-task :default => :dev
+task default: :dev
