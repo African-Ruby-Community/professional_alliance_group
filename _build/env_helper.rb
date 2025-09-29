@@ -23,11 +23,11 @@ def validate_credentials_path
 end
 
 def credentials_path_present?
-  ENV.fetch('CREDENTIALS_PATH', nil) && !ENV['CREDENTIALS_PATH'].empty?
+  ENV.fetch('CREDENTIALS_PATH', nil) && !ENV.fetch('CREDENTIALS_PATH').empty?
 end
 
 def normalize_credentials_path
-  return if ENV['CREDENTIALS_PATH'].start_with?('/')
+  return if ENV.fetch('CREDENTIALS_PATH').start_with?('/')
 
   ENV['CREDENTIALS_PATH'] = File.expand_path(ENV.fetch('CREDENTIALS_PATH', nil), Dir.pwd)
 end
