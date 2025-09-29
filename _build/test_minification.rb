@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'fileutils'
 require 'pathname'
 
@@ -11,32 +12,37 @@ class String
   def red
     colorize(31)
   end
+
   def green
     colorize(32)
   end
+
   def yellow
     colorize(33)
   end
+
   def blue
     colorize(34)
   end
+
   def magenta
     colorize(35)
   end
+
   def cyan
     colorize(36)
   end
 end
 
 # Directories to check
-PUBLIC_DIR = "public"
+PUBLIC_DIR = 'public'
 HTML_DIR = File.join(PUBLIC_DIR)
-CSS_DIR = File.join(PUBLIC_DIR, "assets", "css")
-JS_DIR = File.join(PUBLIC_DIR, "assets", "js")
+CSS_DIR = File.join(PUBLIC_DIR, 'assets', 'css')
+JS_DIR = File.join(PUBLIC_DIR, 'assets', 'js')
 
 # Check if the public directory exists
 unless Dir.exist?(PUBLIC_DIR)
-  Jekyll.logger.info "❌ #{"Error:".red} The 'public' directory does not exist. Please run 'make build' first."
+  Jekyll.logger.info "❌ #{'Error:'.red} The 'public' directory does not exist. Please run 'make build' first."
   exit(1)
 end
 
@@ -45,7 +51,7 @@ def check_file_sizes(directory, file_extension, description)
   Jekyll.logger.info "\n#{"Checking #{description} files...".cyan}"
 
   # Find all files with the given extension
-  files = Dir.glob(File.join(directory, "**", "*.#{file_extension}"))
+  files = Dir.glob(File.join(directory, '**', "*.#{file_extension}"))
 
   if files.empty?
     Jekyll.logger.info "  #{"No #{file_extension} files found in #{directory}".yellow}"
@@ -61,17 +67,17 @@ def check_file_sizes(directory, file_extension, description)
     # Check for minification indicators
     content = File.read(file)
     is_minified = case file_extension
-                  when "html"
-                    !content.match(/^\s*$/)  # No empty lines
-                  when "css"
-                    !content.match(/\/\*/) && !content.match(/\s{2,}/)  # No comments or multiple spaces
-                  when "js"
-                    !content.match(/\/\//) && !content.match(/\s{2,}/)  # No comments or multiple spaces
+                  when 'html'
+                    !content.match(/^\s*$/) # No empty lines
+                  when 'css'
+                    !content.match(%r{/\*}) && !content.match(/\s{2,}/) # No comments or multiple spaces
+                  when 'js'
+                    !content.match(%r{//}) && !content.match(/\s{2,}/) # No comments or multiple spaces
                   else
                     false
                   end
 
-    status = is_minified ? "#{"✓".green} Minified" : "#{"✗".red} Not minified"
+    status = is_minified ? "#{'✓'.green} Minified" : "#{'✗'.red} Not minified"
     Jekyll.logger.info "  #{relative_path}: #{(size.to_f / 1024).round(2)} KB #{status}"
   end
 
