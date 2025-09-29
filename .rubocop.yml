@@ -21,13 +21,13 @@ AllCops:
 Style/StringLiterals:
   EnforcedStyle: single_quotes
 
-Style/TrailingWhitespace:
+Layout/TrailingWhitespace:
   Enabled: true
 
-Style/EmptyLinesAroundBlockBody:
+Layout/EmptyLinesAroundBlockBody:
   Enabled: true
 
-Style/EmptyLinesAroundMethodBody:
+Layout/EmptyLinesAroundMethodBody:
   Enabled: true
 
 # Layout rules
