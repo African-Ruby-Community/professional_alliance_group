@@ -46,11 +46,47 @@ unless Dir.exist?(PUBLIC_DIR)
   exit(1)
 end
 
+# Helper method to check if content is minified
+def minified?(content, file_extension)
+  case file_extension
+  when 'html'
+    !content.match(/^\s*$/) # No empty lines
+  when 'css'
+    !content.match(%r{/\*}) && !content.match(/\s{2,}/) # No comments or multiple spaces
+  when 'js'
+    !content.match(%r{//}) && !content.match(/\s{2,}/) # No comments or multiple spaces
+  else
+    false
+  end
+end
+
+# Helper method to format file size in KB
+def format_size_kb(size_bytes)
+  (size_bytes.to_f / 1024).round(2)
+end
+
+# Helper method to get relative path from current directory
+def relative_path_from_pwd(file_path)
+  Pathname.new(file_path).relative_path_from(Pathname.new(Dir.pwd)).to_s
+end
+
+# Helper method to process and log individual file information
+def process_file(file, file_extension)
+  size = File.size(file)
+  relative_path = relative_path_from_pwd(file)
+  content = File.read(file)
+  is_minified = minified?(content, file_extension)
+  
+  status = is_minified ? "#{'✓'.green} Minified" : "#{'✗'.red} Not minified"
+  Jekyll.logger.info "  #{relative_path}: #{format_size_kb(size)} KB #{status}"
+  
+  size
+end
+
 # Function to check file sizes
 def check_file_sizes(directory, file_extension, description)
   Jekyll.logger.info "\n#{"Checking #{description} files...".cyan}"
 
-  # Find all files with the given extension
   files = Dir.glob(File.join(directory, '**', "*.#{file_extension}"))
 
   if files.empty?
@@ -58,30 +94,8 @@ def check_file_sizes(directory, file_extension, description)
     return
   end
 
-  total_size = 0
-  files.each do |file|
-    size = File.size(file)
-    total_size += size
-    relative_path = Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd)).to_s
-
-    # Check for minification indicators
-    content = File.read(file)
-    is_minified = case file_extension
-                  when 'html'
-                    !content.match(/^\s*$/) # No empty lines
-                  when 'css'
-                    !content.match(%r{/\*}) && !content.match(/\s{2,}/) # No comments or multiple spaces
-                  when 'js'
-                    !content.match(%r{//}) && !content.match(/\s{2,}/) # No comments or multiple spaces
-                  else
-                    false
-                  end
-
-    status = is_minified ? "#{'✓'.green} Minified" : "#{'✗'.red} Not minified"
-    Jekyll.logger.info "  #{relative_path}: #{(size.to_f / 1024).round(2)} KB #{status}"
-  end
-
-  Jekyll.logger.info "  #{"Total #{description} size:".blue} #{(total_size.to_f / 1024).round(2)} KB"
+  total_size = files.sum { |file| process_file(file, file_extension) }
+  Jekyll.logger.info "  #{"Total #{description} size:".blue} #{format_size_kb(total_size)} KB"
 end
 
 # Check HTML, CSS, and JS files
