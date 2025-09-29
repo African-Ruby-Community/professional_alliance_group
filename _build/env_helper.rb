@@ -1,29 +1,30 @@
+# frozen_string_literal: true
+
 def load_env_if_available
-  begin
-    require 'dotenv'
-    if File.exist?('.env')
-      Dotenv.load
-      puts "🔍 Loaded env vars from .env"
+  require 'dotenv'
+  load_and_validate_env if File.exist?('.env')
+rescue LoadError
+  Jekyll.logger.info '📦 Dotenv not available (likely running in CI)'
+end
 
-      # Validate and adjust paths if needed
-      if ENV['CREDENTIALS_PATH'] && !ENV['CREDENTIALS_PATH'].empty?
-        # If CREDENTIALS_PATH is a relative path, make it absolute
-        unless ENV['CREDENTIALS_PATH'].start_with?('/')
-          ENV['CREDENTIALS_PATH'] = File.expand_path(ENV['CREDENTIALS_PATH'], Dir.pwd)
-        end
+private
 
-        if File.exist?(ENV['CREDENTIALS_PATH'])
-          puts "✅ Found credentials file at #{ENV['CREDENTIALS_PATH']}"
-        else
-          puts "❌ Credentials file not found at #{ENV['CREDENTIALS_PATH']}"
-        end
-      else
-        puts "⚠️ CREDENTIALS_PATH not set in .env file"
-      end
+def load_and_validate_env
+  Dotenv.load
+  Jekyll.logger.info '🔍 Loaded env vars from .env'
+  validate_credentials_path
+end
+
+def validate_credentials_path
+  if ENV['CREDENTIALS_PATH'] && !ENV['CREDENTIALS_PATH'].empty?
+    ENV['CREDENTIALS_PATH'] = File.expand_path(ENV['CREDENTIALS_PATH'], Dir.pwd) unless ENV['CREDENTIALS_PATH'].start_with?('/')
+
+    if File.exist?(ENV['CREDENTIALS_PATH'])
+      Jekyll.logger.info "✅ Found credentials file at #{ENV['CREDENTIALS_PATH']}"
     else
-      puts "⚠️ No .env file found"
+      Jekyll.logger.info "❌ Credentials file not found at #{ENV['CREDENTIALS_PATH']}"
     end
-  rescue LoadError
-    puts "📦 Dotenv not available (likely running in CI)"
+  else
+    Jekyll.logger.info '⚠️ CREDENTIALS_PATH not set in .env file'
   end
 end
