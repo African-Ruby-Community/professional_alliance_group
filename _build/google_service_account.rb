@@ -40,6 +40,61 @@ def authorize_google_sheets(path, json_string)
   ).tap(&:fetch_access_token!)
 end
 
+def load_members_index
+  members_path = File.join(DATA_FOLDER, 'members.json')
+  return nil unless File.exist?(members_path)
+
+  begin
+    members_data = JSON.parse(File.read(members_path))
+    members_data.each_with_object({}) do |member, index|
+      index[member['Member Number']] = member
+    end
+  rescue StandardError => e
+    warn "Failed to load members.json for collaborator mapping: #{e.message}"
+    nil
+  end
+end
+
+def process_google_drive_image_url(item)
+  return unless item['Image URL'] && !item['Image URL'].to_s.strip.empty?
+
+  gdrive_link = item['Image URL']
+  extract = gdrive_link.scan(%r{https://drive.google.com/file/d/(.*)/view/})
+
+  return unless extract.count.positive?
+
+  gdrive_file_id = extract&.first&.first
+  return unless gdrive_file_id
+
+  item['Image URL'] = "https://lh3.googleusercontent.com/d/#{gdrive_file_id}=w1000?authuser=1/view"
+end
+
+def generate_member_permalink(item)
+  return unless item['Full Name'] && !item['Full Name'].to_s.empty?
+
+  slug = item['Full Name']&.downcase&.squeeze&.split&.join('-')
+  item['permalink'] = "/members/#{slug}/"
+end
+
+def map_collaborators(item, members_by_number)
+  return unless members_by_number && item['Collaborators'] && !item['Collaborators'].to_s.strip.empty?
+
+  codes = item['Collaborators'].split(',').map(&:strip)
+  item['collaborators'] = codes.map { |code| members_by_number[code] }.compact
+end
+
+def process_sheet_data(data, members_by_number)
+  data.each do |item|
+    process_google_drive_image_url(item)
+    generate_member_permalink(item)
+    map_collaborators(item, members_by_number)
+  end
+end
+
+def requires_collaborator_resolution?(sheet)
+  sheet.to_s.downcase == 'collaborators' || sheet.to_s.downcase == 'collaborations'
+end
+
 # Initialize Sheets API
 service = Google::Apis::SheetsV4::SheetsService.new
 service.authorization = authorize_google_sheets(CREDENTIALS_PATH, SERVICE_ACCOUNT_JSON)
@@ -53,47 +108,9 @@ SHEETS.each do |sheet|
   data = values[1..].map { |row| headers.zip(row).to_h }
 
   # Preload members index if this sheet requires collaborator resolution
-  members_by_number = nil
-  if sheet.to_s.downcase == 'collaborators' || sheet.to_s.downcase == 'collaborations'
-    members_path = File.join(DATA_FOLDER, 'members.json')
-    if File.exist?(members_path)
-      begin
-        members_data = JSON.parse(File.read(members_path))
-        members_by_number = members_data.each_with_object({}) do |member, index|
-          index[member['Member Number']] = member
-        end
-      rescue StandardError => e
-        warn "Failed to load members.json for collaborator mapping: #{e.message}"
-      end
-    end
-  end
+  members_by_number = requires_collaborator_resolution?(sheet) ? load_members_index : nil
 
-  data.each do |item|
-    # Process Google Drive image URL if present
-    if item['Image URL'] && !item['Image URL'].to_s.strip.empty?
-      gdrive_link = item['Image URL']
-      extract = gdrive_link.scan(%r{https://drive.google.com/file/d/(.*)/view/})
-
-      if extract.count.positive?
-        gdrive_file_id = extract&.first&.first
-        if gdrive_file_id
-          item['Image URL'] = "https://lh3.googleusercontent.com/d/#{gdrive_file_id}=w1000?authuser=1/view"
-        end
-      end
-    end
-
-    # Generate permalink for members if Full Name present (directory-style, no .html)
-    if item['Full Name'] && !item['Full Name'].to_s.empty?
-      slug = item['Full Name']&.downcase&.squeeze&.split&.join('-')
-      item['permalink'] = "/members/#{slug}/"
-    end
-
-    # Map collaborators codes to member objects for collaborations sheet
-    if members_by_number && item['Collaborators'] && !item['Collaborators'].to_s.strip.empty?
-      codes = item['Collaborators'].split(',').map(&:strip)
-      item['collaborators'] = codes.map { |code| members_by_number[code] }.compact
-    end
-  end
+  process_sheet_data(data, members_by_number)
 
   # Save data to a json data file
   File.write("#{DATA_FOLDER}/#{sheet}.json", JSON.pretty_generate(data))
