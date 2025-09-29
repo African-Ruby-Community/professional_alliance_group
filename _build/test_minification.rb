@@ -76,10 +76,8 @@ def process_file(file, file_extension)
   relative_path = relative_path_from_pwd(file)
   content = File.read(file)
   is_minified = minified?(content, file_extension)
-  
   status = is_minified ? "#{'✓'.green} Minified" : "#{'✗'.red} Not minified"
   Jekyll.logger.info "  #{relative_path}: #{format_size_kb(size)} KB #{status}"
-  
   size
 end
 
