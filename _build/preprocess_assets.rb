@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Not in use
 
 require 'sprockets'
@@ -20,10 +22,10 @@ environment.css_compressor = :sassc
 
 # Create directories if they do not exist
 # FileUtils.mkdir_p project_root+'/assets/javascripts'
-FileUtils.mkdir_p project_root+'/assets/stylesheets'
+FileUtils.mkdir_p "#{project_root}/assets/stylesheets"
 
 # Write minifies JS & CSS into files
-File.open(app_css_file, 'w') { |f| f.write environment['application.css'].to_s }
+File.write(app_css_file, environment['application.css'].to_s)
 # File.open(app_js_file,  'w') { |f| f.write environment['application.js'].to_s }
 
 # See; http://kingori.co/minutae/2014/04/minify-assets-github-pages/
