@@ -7,6 +7,7 @@ require 'fileutils'
 require 'dotenv'
 require 'jekyll'
 require 'jekyll_plugin_logger'
+require 'stringio'
 
 Dotenv.load if File.exist?('.env') # Load .env variables
 
@@ -23,8 +24,6 @@ SHEETS = ENV.fetch('SHEETS', nil)&.split(',')&.map(&:strip)
 SCOPE = ['https://www.googleapis.com/auth/spreadsheets.readonly'].freeze
 
 # Authorize with service account
-# Define the scope for Google Sheets API
-
 def authorize_google_sheets(path, json_string)
   cred_io = if json_string && !json_string.empty?
               Jekyll.logger.info 'GoogleServiceAccount:', 'Using service account'
@@ -101,6 +100,7 @@ end
 service = Google::Apis::SheetsV4::SheetsService.new
 service.authorization = authorize_google_sheets(CREDENTIALS_PATH, SERVICE_ACCOUNT_JSON)
 
+# rubocop:disable Metrics/BlockLength
 SHEETS.each do |sheet|
   response = service.get_spreadsheet_values(SPREADSHEET_ID, sheet)
 
@@ -117,3 +117,4 @@ SHEETS.each do |sheet|
   # Save data to a json data file
   File.write("#{DATA_FOLDER}/#{sheet}.json", JSON.pretty_generate(data))
 end
+# rubocop:enable Metrics/BlockLength

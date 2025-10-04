@@ -12,6 +12,7 @@ AllCops:
     - 'public/**/*'
     - 'Gemfile.lock'
     - 'vendor/bundle/**/*'
+    - '_plugins/**/*'
 
 # Jekyll specific rules
 # Jekyll/UnescapedFrontMatter:

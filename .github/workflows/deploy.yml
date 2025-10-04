@@ -1,6 +1,8 @@
 name: Deploy site
 
 on:
+  schedule:
+   - cron: "0 * * * *" # runs once per hour, on the hour
   push:
     branches:
       - test
