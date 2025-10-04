@@ -19,7 +19,7 @@ CREDENTIALS_PATH = ENV.fetch('CREDENTIALS_PATH', './service_acc.json')
 SERVICE_ACCOUNT_JSON = ENV.fetch('SERVICE_ACCOUNT_JSON', nil)
 APPLICATION_NAME = ENV.fetch('APPLICATION_NAME', 'GoogleSheetsSync')
 SPREADSHEET_ID = ENV.fetch('SPREADSHEET_ID', nil)
-SHEETS = ENV.fetch('SHEETS', nil)
+SHEETS = ENV.fetch('SHEETS', nil)&.split(',')&.map(&:strip)
 SCOPE = ['https://www.googleapis.com/auth/spreadsheets.readonly'].freeze
 
 # Authorize with service account
