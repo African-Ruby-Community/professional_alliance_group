@@ -5,6 +5,8 @@ require 'googleauth'
 require 'json'
 require 'fileutils'
 require 'dotenv'
+require 'jekyll'
+require 'jekyll_plugin_logger'
 
 Dotenv.load if File.exist?('.env') # Load .env variables
 
