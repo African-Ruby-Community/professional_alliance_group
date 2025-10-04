@@ -1,6 +1,8 @@
 name: Deploy site
 
 on:
+  schedule:
+   - cron: "0 * * * *" # runs once per hour, on the hour
   push:
     branches:
       - test
@@ -50,7 +52,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.4.2"
+          ruby-version: "3.4.4"
           bundler-cache: true
 
       # --- NEW STEP: Setup Node.js for JavaScript minification ---

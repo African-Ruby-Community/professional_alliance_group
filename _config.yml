@@ -81,13 +81,12 @@ page_gen:
     index_files: false
     title: "Full Name"
     slugify: true
-    raw: false
 
 # Collections of content
 collections:
   members:
     output: true
-    permalink: /members/:name/
+    permalink: /members/:name
   groups:
     output: true
     permalink: /groups/:name/

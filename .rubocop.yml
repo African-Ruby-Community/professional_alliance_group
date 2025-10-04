@@ -1,0 +1,57 @@
+# RuboCop configuration for Jekyll project
+require:
+  - rubocop-jekyll
+
+AllCops:
+  TargetRubyVersion: 3.3
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - '_site/**/*'
+    - 'public/**/*'
+    - 'Gemfile.lock'
+    - 'vendor/bundle/**/*'
+    - '_plugins/**/*'
+
+# Jekyll specific rules
+# Jekyll/UnescapedFrontMatter:
+#   Enabled: true
+
+# Style rules
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Layout/TrailingWhitespace:
+  Enabled: true
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: true
+
+# Layout rules
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - '*.liquid'
+    - '*.html'
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
+
+# Metrics
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'test/**/*'
+    - 'spec/**/*'
+    - 'config/**/*'
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 20

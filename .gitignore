@@ -68,8 +68,9 @@ _site
 # Ignore Gemfile.lock to avoid contributors pushing different versions
 Gemfile.lock
 
-# Ignore ruby version files
+# Ignore ruby version files (except .ruby-version)
 .ruby-*
+!.ruby-version
 
 # This is where the artifacts will be created when building in production
 public
@@ -86,3 +87,12 @@ _data/new_remote/*
 
 # Ignore this file because it contains sensitive credentials
 service_acc.json
+
+# Ruby development files
+.rubocop-https---*
+.rubocop_todo.yml
+coverage/
+.byebug_history
+
+# Cursor IDE files
+.cursor/
