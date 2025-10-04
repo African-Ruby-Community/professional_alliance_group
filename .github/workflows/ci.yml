@@ -9,25 +9,25 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.4.4
         bundler-cache: true
-    
+
     - name: Install dependencies
       run: bundle install
-    
+
     - name: Run RuboCop
       run: bundle exec rubocop
-    
+
     - name: Build Jekyll site
-      run: bundle exec jekyll build
-    
+      run: bundle exec jekyll build --trace
+
     - name: Test site build
       run: |
         if [ ! -d "_site" ]; then
