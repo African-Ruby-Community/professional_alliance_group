@@ -100,7 +100,6 @@ end
 service = Google::Apis::SheetsV4::SheetsService.new
 service.authorization = authorize_google_sheets(CREDENTIALS_PATH, SERVICE_ACCOUNT_JSON)
 
-# rubocop:disable Metrics/BlockLength
 SHEETS.each do |sheet|
   response = service.get_spreadsheet_values(SPREADSHEET_ID, sheet)
 
@@ -117,4 +116,3 @@ SHEETS.each do |sheet|
   # Save data to a json data file
   File.write("#{DATA_FOLDER}/#{sheet}.json", JSON.pretty_generate(data))
 end
-# rubocop:enable Metrics/BlockLength
