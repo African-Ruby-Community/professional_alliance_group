@@ -20,7 +20,17 @@ CREDENTIALS_PATH = ENV.fetch('CREDENTIALS_PATH', './service_acc.json')
 SERVICE_ACCOUNT_JSON = ENV.fetch('SERVICE_ACCOUNT_JSON', nil)
 APPLICATION_NAME = ENV.fetch('APPLICATION_NAME', 'GoogleSheetsSync')
 SPREADSHEET_ID = ENV.fetch('SPREADSHEET_ID', nil)
-SHEETS = ENV.fetch('SHEETS', nil)&.split(',')&.map(&:strip)
+SHEETS = begin
+  raw = ENV.fetch('SHEETS', nil)
+  if raw.nil? || raw.strip.empty?
+    []
+  elsif raw.strip.start_with?('[')
+    normalized = raw.gsub("'", '"')
+    JSON.parse(normalized)
+  else
+    raw.split(',').map(&:strip)
+  end
+end
 SCOPE = ['https://www.googleapis.com/auth/spreadsheets.readonly'].freeze
 
 # Authorize with service account
@@ -57,17 +67,15 @@ def load_members_index
 end
 
 def process_google_drive_image_url(item)
-  return unless item['Image URL'] && !item['Image URL'].to_s.strip.empty?
+  url = item['Image URL']&.strip
+  return if url.nil? || url.empty?
 
-  gdrive_link = item['Image URL']
-  extract = gdrive_link.scan(%r{https://drive.google.com/file/d/(.*)/view/})
+  # Combine regex patterns for cleaner matching
+  file_id = url[%r{https://drive\.google\.com/(?:file/d/|open\?id=|uc\?id=)([^/&?]+)}, 1]
+  return unless file_id
 
-  return unless extract.count.positive?
-
-  gdrive_file_id = extract&.first&.first
-  return unless gdrive_file_id
-
-  item['Image URL'] = "https://lh3.googleusercontent.com/d/#{gdrive_file_id}=w1000?authuser=1/view"
+  # Use standard image-serving URL format
+  item['Image URL'] = "https://lh3.googleusercontent.com/d/#{file_id}=w1000"
 end
 
 def generate_member_permalink(item)
