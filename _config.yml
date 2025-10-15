@@ -81,6 +81,8 @@ page_gen:
     index_files: false
     title: "Full Name"
     slugify: true
+    # Add a filter to only process if data exists
+    filter: "Full Name"
 
 # Collections of content
 collections:
