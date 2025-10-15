@@ -1,3 +1,7 @@
+[![CI](https://github.com/African-Ruby-Community/professional_alliance_group/actions/workflows/ci.yml/badge.svg)](https://github.com/African-Ruby-Community/professional_alliance_group/actions/workflows/ci.yml)
+![Jekyll](https://img.shields.io/badge/Jekyll-4.3.3-blue.svg?logo=jekyll)
+![Ruby](https://img.shields.io/badge/ruby-3.4.4-red.svg?logo=ruby)
+
 # Professional Alliance Group
 
 ## Setup
