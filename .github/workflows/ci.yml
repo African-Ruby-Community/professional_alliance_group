@@ -9,25 +9,32 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.4.4
         bundler-cache: true
-    
+
     - name: Install dependencies
       run: bundle install
-    
+
+    - name: Create fallback data for testing
+      run: |
+        mkdir -p _data/new_remote
+        if [ ! -f "_data/new_remote/members.json" ]; then
+          echo '[]' > _data/new_remote/members.json
+        fi
+
     - name: Run RuboCop
       run: bundle exec rubocop
-    
+
     - name: Build Jekyll site
-      run: bundle exec jekyll build
-    
+      run: bundle exec jekyll build --trace
+
     - name: Test site build
       run: |
         if [ ! -d "_site" ]; then
